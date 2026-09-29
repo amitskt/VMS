@@ -1,0 +1,66 @@
+@import './VolunteerShell.css';
+
+/* Converted from 15-my-certificates.html. Page-specific styles scoped under
+   .page-certificates — shared chrome (sidebar/topbar/empty-state/
+   form-error/btn-primary/btn-ghost) comes from VolunteerShell.css. */
+
+.page-certificates .summary-strip { display: flex; gap: 14px; margin-bottom: 28px; }
+.page-certificates .summary-tile { background: var(--white); border-radius: 16px; padding: 16px 20px; border: 1.5px solid var(--gray-200); flex: 1; text-align: center; }
+.page-certificates .summary-tile .st-num { font-size: 28px; font-weight: 800; color: var(--deep); }
+.page-certificates .summary-tile .st-label { font-size: 12px; color: var(--gray-400); margin-top: 3px; }
+
+.page-certificates .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+
+.page-certificates .cert-card { background: var(--white); border-radius: 22px; overflow: hidden; border: 1.5px solid var(--gray-200); box-shadow: 0 4px 20px rgba(0, 0, 0, .06); transition: all .25s; cursor: pointer; }
+.page-certificates .cert-card:hover { border-color: var(--gold); box-shadow: 0 8px 32px rgba(216, 183, 92, .18); transform: translateY(-3px); }
+.page-certificates .cert-visual { background: linear-gradient(135deg, var(--forest) 0%, var(--deep) 60%, #0d2f27 100%); padding: 28px 24px; position: relative; overflow: hidden; }
+.page-certificates .cert-visual::before { content: ''; position: absolute; top: -30px; right: -30px; width: 120px; height: 120px; border-radius: 50%; background: rgba(154, 209, 75, .1); }
+.page-certificates .cert-visual::after { content: ''; position: absolute; bottom: -20px; left: -20px; width: 80px; height: 80px; border-radius: 50%; background: rgba(216, 183, 92, .08); }
+.page-certificates .cert-visual .cv-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; position: relative; z-index: 1; }
+.page-certificates .cv-logo { width: 36px; height: 36px; background: var(--lime); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.page-certificates .cv-org { font-size: 12px; font-weight: 700; color: rgba(255, 255, 255, .7); }
+.page-certificates .cert-visual h3 { font-size: 20px; font-weight: 800; color: var(--white); margin-bottom: 4px; position: relative; z-index: 1; }
+.page-certificates .cert-visual .cv-name { font-size: 14px; color: rgba(255, 255, 255, .65); position: relative; z-index: 1; }
+.page-certificates .cert-visual .cv-badge { display: inline-block; background: rgba(154, 209, 75, .2); border: 1px solid rgba(154, 209, 75, .4); color: var(--lime); font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; margin-top: 10px; position: relative; z-index: 1; }
+.page-certificates .cert-body { padding: 18px 20px; }
+.page-certificates .cert-id-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; gap: 8px; }
+.page-certificates .cert-id-label { font-size: 11px; color: var(--gray-400); white-space: nowrap; }
+.page-certificates .cert-id-code { font-size: 12px; font-weight: 700; color: var(--gray-800); letter-spacing: .05em; font-family: monospace; background: var(--gray-100); padding: 3px 10px; border-radius: 8px; cursor: copy; }
+.page-certificates .cert-date { font-size: 12px; color: var(--gray-400); margin-bottom: 14px; }
+.page-certificates .cert-actions { display: flex; gap: 8px; }
+.page-certificates .ca-btn { flex: 1; padding: 9px 8px; border-radius: 10px; border: none; font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer; transition: all .2s; display: flex; align-items: center; justify-content: center; gap: 4px; }
+.page-certificates .ca-btn:disabled { opacity: .6; cursor: not-allowed; }
+.page-certificates .ca-view { background: var(--forest); color: white; }
+.page-certificates .ca-view:hover { background: var(--deep); }
+.page-certificates .ca-download { background: var(--sage); color: var(--forest); }
+.page-certificates .ca-download:hover { background: #c5ddb8; }
+.page-certificates .ca-linkedin { background: linear-gradient(135deg, #0077B5, #005e8a); color: white; }
+.page-certificates .ca-linkedin:hover { opacity: .9; }
+
+.page-certificates .cert-pending { opacity: .7; border-style: dashed; }
+.page-certificates .cert-pending .cert-visual { background: linear-gradient(135deg, var(--gray-400), var(--gray-600)); }
+.page-certificates .pending-label { text-align: center; padding: 12px; font-size: 13px; color: var(--gray-600); font-weight: 600; }
+.page-certificates .pending-label span { display: block; font-size: 11px; color: var(--gray-400); font-weight: 400; margin-top: 2px; }
+
+/* CERT VIEW MODAL — .modal-overlay backdrop is page-owned here (the mockup
+   used its own .open toggle, kept as-is rather than switching to
+   AdminShell's .show convention, to match this page's own mockup 1:1). */
+.page-certificates .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, .7); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
+.page-certificates .modal-overlay.open { display: flex; }
+.page-certificates .cert-modal { background: var(--white); border-radius: 24px; max-width: 580px; width: 100%; overflow: hidden; box-shadow: 0 20px 60px rgba(0, 0, 0, .3); animation: certModalIn .3s ease; }
+@keyframes certModalIn { from { transform: scale(.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.page-certificates .cert-modal-visual { background: linear-gradient(135deg, var(--forest), var(--deep)); padding: 48px; text-align: center; position: relative; overflow: hidden; }
+.page-certificates .cert-modal-visual::before { content: ''; position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; border-radius: 50%; background: rgba(154, 209, 75, .1); }
+.page-certificates .cert-modal-visual .medal { font-size: 56px; margin-bottom: 20px; }
+.page-certificates .cert-modal-visual h2 { font-size: 14px; font-weight: 700; color: rgba(255, 255, 255, .6); text-transform: uppercase; letter-spacing: .12em; margin-bottom: 10px; }
+.page-certificates .cert-modal-visual h1 { font-size: 26px; font-weight: 800; color: var(--white); margin-bottom: 8px; }
+.page-certificates .cert-modal-visual p { font-size: 16px; color: rgba(255, 255, 255, .7); margin-bottom: 6px; }
+.page-certificates .cert-modal-visual .cert-date-lg { font-size: 13px; color: rgba(255, 255, 255, .5); margin-top: 16px; }
+.page-certificates .cert-modal-visual .cert-id-lg { font-size: 12px; color: rgba(255, 255, 255, .4); margin-top: 4px; font-family: monospace; }
+.page-certificates .cert-modal-body { padding: 24px 28px; }
+.page-certificates .modal-actions { display: flex; flex-direction: column; gap: 10px; }
+.page-certificates .ma-btn { padding: 13px; border-radius: 12px; border: none; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer; width: 100%; }
+.page-certificates .ma-btn:disabled { opacity: .6; cursor: not-allowed; }
+.page-certificates .ma-close { margin-top: 4px; background: var(--gray-100); color: var(--gray-600); }
+.page-certificates .ma-li { background: linear-gradient(135deg, #0077B5, #005e8a); color: white; }
+.page-certificates .ma-dl { background: var(--forest); color: white; }

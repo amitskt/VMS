@@ -1,0 +1,555 @@
+/**
+ * Shared shell CSS for every admin page (Dashboard, Departments, Settings,
+ * Volunteers, and any page added later).
+ *
+ * WHY THIS FILE EXISTS: each admin page used to carry its own full copy of
+ * the sidebar/topbar/content chrome in its own .css file. Because App.jsx
+ * imports every page up front, Vite injects ALL of those page stylesheets
+ * into the same document regardless of which route is active — so whichever
+ * page's CSS was imported LAST won the cascade for any class name the files
+ * shared (e.g. `.sidebar`, `.content`, `.table-wrap`). That's why adding a
+ * new page kept quietly breaking the look of older ones.
+ *
+ * Fix: the truly page-invariant chrome below lives here ONCE, and every
+ * page imports this file in addition to its own. Anything that legitimately
+ * differs per page (table styling, modals, section-card spacing, etc.)
+ * stays in that page's own .css file, but scoped under a page-root class
+ * (`.page-dashboard`, `.page-departments`, `.page-settings`,
+ * `.page-volunteers`) so it can never leak into another page even if two
+ * pages reuse the same class name in the future.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --forest: #1f6b52;
+  --deep: #16423c;
+  --beige: #f5f1e8;
+  --sage: #dde8d5;
+  --lime: #9ad14b;
+  --gold: #d8b75c;
+  --sky: #8fd3ff;
+  --white: #ffffff;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-400: #9ca3af;
+  --gray-600: #4b5563;
+  --gray-800: #1f2937;
+}
+
+.dash-page * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* .dash-page is the equivalent of the original mockups' `body` selector —
+   scoped to a wrapper div since a React page can't safely style <body>
+   directly. */
+.dash-page {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--beige);
+  display: flex;
+  min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 240px;
+  background: var(--deep);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 200;
+}
+
+.sidebar-logo {
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-lockup {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.logo-word {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -0.02em;
+}
+
+.logo-sub {
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-top: 2px;
+}
+
+.logo-badge {
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-left: 2px;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 16px 12px;
+  overflow-y: auto;
+}
+
+.nav-section {
+  margin-bottom: 24px;
+}
+
+.nav-section-title {
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0 8px;
+  margin-bottom: 8px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+  cursor: pointer;
+  margin-bottom: 2px;
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--white);
+}
+
+.nav-item.active {
+  background: var(--forest);
+  color: var(--white);
+  font-weight: 700;
+}
+
+.nav-item .icon {
+  font-size: 18px;
+  width: 22px;
+  text-align: center;
+}
+
+.nav-item .badge {
+  margin-left: auto;
+  background: var(--lime);
+  color: var(--deep);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 20px;
+}
+
+.sidebar-footer {
+  padding: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.user-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.07);
+  cursor: pointer;
+}
+
+.user-card:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--lime), #6bab20);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--deep);
+  flex-shrink: 0;
+}
+
+.avatar--sm {
+  width: 36px;
+  height: 36px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.user-info .name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.user-info .role {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* MAIN */
+.main {
+  margin-left: 240px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.topbar {
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 14px 28px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+}
+
+.topbar-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--deep);
+}
+
+.topbar-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.topbar-role-chip {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--forest);
+  background: var(--sage);
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+.content {
+  padding: 24px 28px;
+  flex: 1;
+}
+
+/* MOBILE MENU TOGGLE + BACKDROP — real off-canvas drawer below 900px
+   instead of the original mockups' `.sidebar{display:none}` (which hides
+   the nav with no way to bring it back). */
+.menu-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1.5px solid var(--gray-200);
+  background: var(--white);
+  color: var(--deep);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.menu-btn:hover {
+  border-color: var(--forest);
+  color: var(--forest);
+}
+
+.sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 20, 0.45);
+  z-index: 199;
+}
+
+/* PAGE HEAD — used by Departments/Settings/Volunteers; Dashboard uses its
+   own welcome-card instead, so it just won't reference this. */
+.page-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.page-head h1 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--deep);
+}
+
+.page-head p {
+  font-size: 13px;
+  color: var(--gray-400);
+  margin-top: 2px;
+}
+
+/* SHARED BUTTONS — identical everywhere they're used, so they live here
+   once instead of drifting slightly out of sync between page files. */
+.btn-primary {
+  padding: 11px 20px;
+  background: var(--forest);
+  color: var(--white);
+  border: none;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-primary:hover {
+  background: var(--deep);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(31, 107, 82, 0.3);
+}
+
+.btn-primary:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-ghost {
+  padding: 9px 16px;
+  background: transparent;
+  color: var(--forest);
+  border: 1.5px solid var(--gray-200);
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-ghost:hover {
+  border-color: var(--forest);
+  background: rgba(31, 107, 82, 0.03);
+}
+
+.btn-ghost:disabled {
+  color: var(--gray-400);
+  border-color: var(--gray-200);
+  cursor: not-allowed;
+  background: none;
+}
+
+.btn-ghost.warn {
+  color: #92400e;
+}
+
+.btn-ghost.warn:hover {
+  border-color: var(--gold);
+  background: #fffbeb;
+}
+
+.btn-ghost.danger {
+  color: #b91c1c;
+}
+
+.btn-ghost.danger:hover {
+  border-color: #f3a3a3;
+  background: #fff5f5;
+}
+
+/* RESTRICTED STATE (Department Head gate) — shared by any page that needs
+   to show a "not available to your role" panel. */
+.restricted {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.restricted.show {
+  display: flex;
+}
+
+.restricted .r-icon {
+  width: 88px;
+  height: 88px;
+  background: var(--gray-100);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.restricted h3 {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--deep);
+  margin-bottom: 8px;
+}
+
+.restricted p {
+  font-size: 13.5px;
+  color: var(--gray-400);
+  max-width: 360px;
+  line-height: 1.6;
+}
+
+/* SHARED FORM FIELDS — used by any modal/form (assign-head, certificate
+   settings, etc). */
+.field-group {
+  margin-bottom: 18px;
+}
+
+.field-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--deep);
+  margin-bottom: 7px;
+}
+
+.field-required {
+  color: #dc2626;
+  font-size: 14px;
+}
+
+.field-input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--gray-800);
+  background: var(--white);
+  transition: all 0.2s;
+  outline: none;
+}
+
+.field-input:focus {
+  border-color: var(--forest);
+  box-shadow: 0 0 0 3px rgba(31, 107, 82, 0.1);
+}
+
+.field-hint {
+  font-size: 12px;
+  color: var(--gray-400);
+  margin-top: 5px;
+}
+
+/* SHARED MODAL SHELL — only the overlay backdrop is identical everywhere;
+   the box itself (size/padding/title styling) genuinely differs per modal's
+   content, so that part stays page-scoped in each page's own CSS file. */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-overlay.show {
+  display: flex;
+}
+
+/* SHARED FORM MESSAGES */
+.form-error {
+  color: #dc2626;
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+}
+
+/* SHARED SECTION CARD (base look only) — padding/margin vary per page's
+   content density, so those are set per page via `.page-x .section-card`
+   overrides in that page's own CSS file. */
+.section-card {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 22px;
+  border: 1.5px solid var(--gray-200);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* ---------- Responsive (chrome only — page-specific responsive rules
+   stay in each page's own CSS file, scoped under .page-x) ---------- */
+@media (max-width: 900px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    box-shadow: 12px 0 32px rgba(0, 0, 0, 0.25);
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  .main {
+    margin-left: 0;
+  }
+  .menu-btn {
+    display: inline-flex;
+  }
+  .sidebar-backdrop.show {
+    display: block;
+  }
+}
+
+@media (max-width: 640px) {
+  .topbar {
+    padding: 12px 16px;
+  }
+  .topbar-role-chip {
+    display: none; /* hide on very small screens, avatar still shows */
+  }
+}

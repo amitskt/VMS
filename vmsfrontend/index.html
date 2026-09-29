@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>volunteer</title>
+    <!--
+      Google Analytics 4 (GA4) — loaded here (not in a React component) so
+      it's live from the very first paint, before React/router even mounts.
+      Deliberately written as one inline script that checks the ID itself,
+      rather than a plain `<script src=".../gtag/js?id=%VITE_GA_MEASUREMENT_ID%">`
+      tag: Vite's %ENV_VAR% replacement is a dumb string substitution with
+      no way to omit the tag when the var is empty, and an empty id= would
+      still fire a pointless network request. This way, until
+      VITE_GA_MEASUREMENT_ID is set in .env (see that file's comment),
+      window.gtag is simply never defined and src/services/analytics.js's
+      calls all no-op — same "configure later, fails silently until then"
+      pattern as this app's other optional integrations.
+
+      send_page_view: false because src/App.jsx's <GaPageViewTracker />
+      fires page_view itself on every route change (including client-side
+      React Router navigations that never reload this HTML at all) — letting
+      gtag's own auto-pageview run too would double-count the very first
+      page of every visit.
+    -->
+    <script>
+      (function () {
+        var GA_ID = '%VITE_GA_MEASUREMENT_ID%';
+        if (!GA_ID) return;
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { window.dataLayer.push(arguments); };
+        window.gtag('js', new Date());
+        window.gtag('config', GA_ID, { send_page_view: false });
+        var gaScript = document.createElement('script');
+        gaScript.async = true;
+        gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+        document.head.appendChild(gaScript);
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

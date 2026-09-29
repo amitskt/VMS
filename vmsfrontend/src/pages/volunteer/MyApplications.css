@@ -1,0 +1,75 @@
+@import './VolunteerShell.css';
+
+/* Converted from 11-my-applications.html. Page-specific styles scoped under
+   .page-my-applications — shared chrome (sidebar/topbar/empty-state/
+   form-error/btn-primary/btn-ghost) comes from VolunteerShell.css. */
+
+.page-my-applications .content { padding: 24px 28px; }
+
+.page-my-applications .filter-tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+.page-my-applications .filter-tab { padding: 8px 18px; border: 1.5px solid var(--gray-200); border-radius: 30px; font-family: inherit; font-size: 13px; font-weight: 600; color: var(--gray-600); background: var(--white); cursor: pointer; transition: all .2s; }
+.page-my-applications .filter-tab:hover { border-color: var(--forest); color: var(--forest); }
+.page-my-applications .filter-tab.active { background: var(--forest); border-color: var(--forest); color: var(--white); }
+
+.page-my-applications .app-card { background: var(--white); border-radius: 20px; border: 1.5px solid var(--gray-200); padding: 24px; margin-bottom: 14px; transition: all .25s; box-shadow: 0 1px 6px rgba(0,0,0,.04); }
+.page-my-applications .app-card:hover { border-color: var(--forest); box-shadow: 0 4px 20px rgba(31,107,82,.1); }
+.page-my-applications .app-card-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; }
+.page-my-applications .app-card-top h3 { font-size: 17px; font-weight: 800; color: var(--deep); flex: 1; }
+
+.page-my-applications .chips-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 12px; }
+.page-my-applications .chip { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 10px; }
+.page-my-applications .chip-track-a { background: #e8f5ee; color: var(--forest); }
+.page-my-applications .chip-track-b { background: #eff6ff; color: #1d4ed8; }
+.page-my-applications .chip-review { background: #fffbeb; color: #92400e; }
+.page-my-applications .chip-shortlist { background: #eff6ff; color: #1d4ed8; }
+.page-my-applications .chip-selected { background: #f0fdf4; color: #166534; }
+.page-my-applications .chip-complete { background: #e8f5ee; color: var(--forest); }
+.page-my-applications .chip-assigned { background: #f3e8ff; color: #7c3aed; }
+.page-my-applications .chip-withdrawn { background: var(--gray-100); color: var(--gray-400); }
+.page-my-applications .chip-not-selected { background: #fef2f2; color: #dc2626; }
+.page-my-applications .chip-default { background: var(--gray-100); color: var(--gray-600); }
+
+.page-my-applications .status-timeline { display: flex; gap: 0; margin-bottom: 14px; overflow-x: auto; padding-bottom: 4px; }
+.page-my-applications .st-col-wrap { display: flex; align-items: center; }
+.page-my-applications .st-col { display: flex; flex-direction: column; align-items: center; }
+.page-my-applications .st-dot { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--gray-200); background: var(--white); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: var(--gray-400); flex-shrink: 0; transition: all .2s; }
+.page-my-applications .st-dot.done { background: var(--forest); border-color: var(--forest); color: white; }
+.page-my-applications .st-dot.current { background: var(--gold); border-color: var(--gold); color: white; }
+.page-my-applications .st-dot.future { background: var(--gray-100); border-color: var(--gray-200); color: var(--gray-400); }
+.page-my-applications .st-line { width: 24px; height: 2px; background: var(--gray-200); flex-shrink: 0; }
+.page-my-applications .st-line.done { background: var(--forest); }
+.page-my-applications .st-label { font-size: 10px; color: var(--gray-400); text-align: center; margin-top: 4px; white-space: nowrap; }
+
+.page-my-applications .app-meta-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
+.page-my-applications .meta-item { font-size: 13px; color: var(--gray-600); display: flex; align-items: center; gap: 5px; }
+.page-my-applications .m-icon { font-size: 14px; }
+
+.page-my-applications .app-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding-top: 12px; border-top: 1px solid var(--gray-100); }
+.page-my-applications .next-step { font-size: 12px; color: var(--forest); font-weight: 600; display: flex; align-items: center; gap: 4px; }
+.page-my-applications .btn-withdraw { padding: 7px 14px; background: var(--white); border: 1.5px solid #fca5a5; color: #dc2626; border-radius: 10px; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer; transition: all .2s; }
+.page-my-applications .btn-withdraw:hover { background: #fef2f2; border-color: #dc2626; }
+.page-my-applications .btn-view { padding: 7px 14px; background: var(--forest); color: var(--white); border: none; border-radius: 10px; font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer; transition: all .2s; }
+.page-my-applications .btn-view:hover:not(:disabled) { background: var(--deep); }
+.page-my-applications .btn-view:disabled { opacity: .7; }
+
+.page-my-applications .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,.5); z-index: 1000; align-items: center; justify-content: center; }
+.page-my-applications .modal-overlay.open { display: flex; }
+.page-my-applications .modal-card { background: var(--white); border-radius: 20px; padding: 32px; max-width: 380px; width: 90%; box-shadow: 0 20px 60px rgba(0,0,0,.2); }
+.page-my-applications .modal-card-wide { max-width: 440px; }
+.page-my-applications .modal-card h3 { font-size: 18px; font-weight: 800; color: var(--deep); margin-bottom: 8px; }
+.page-my-applications .modal-card p { font-size: 14px; color: var(--gray-600); line-height: 1.6; margin-bottom: 20px; }
+.page-my-applications .modal-btns { display: flex; gap: 10px; }
+.page-my-applications .modal-btns .btn-cancel { flex: 1; padding: 11px; border: 1.5px solid var(--gray-200); border-radius: 12px; font-family: inherit; font-size: 14px; font-weight: 600; background: var(--white); color: var(--gray-600); cursor: pointer; }
+.page-my-applications .modal-btns .btn-confirm-withdraw { flex: 1; padding: 11px; border: none; border-radius: 12px; font-family: inherit; font-size: 14px; font-weight: 700; background: #dc2626; color: white; cursor: pointer; }
+.page-my-applications .modal-btns .btn-view { flex: 1; text-align: center; }
+
+.page-my-applications .submit-field { margin-bottom: 16px; text-align: left; }
+.page-my-applications .submit-field label { display: block; font-size: 13px; font-weight: 600; color: var(--gray-800); margin-bottom: 6px; }
+.page-my-applications .submit-field .req { color: #dc2626; }
+.page-my-applications .submit-field .opt { color: var(--gray-400); font-weight: 400; }
+.page-my-applications .submit-field textarea { width: 100%; padding: 10px 12px; border: 1.5px solid var(--gray-200); border-radius: 10px; font-family: inherit; font-size: 13px; resize: vertical; }
+.page-my-applications .submit-field .field-input { width: 100%; padding: 10px 12px; border: 1.5px solid var(--gray-200); border-radius: 10px; font-family: inherit; font-size: 13px; outline: none; transition: border .2s; }
+.page-my-applications .submit-field .field-input:focus { border-color: var(--forest); }
+.page-my-applications .submit-photo-preview { display: block; margin-top: 10px; width: 100%; max-height: 160px; object-fit: cover; border-radius: 10px; border: 1.5px solid var(--gray-200); }
+
+@media (max-width: 900px) { .page-my-applications .content { padding: 16px; } }

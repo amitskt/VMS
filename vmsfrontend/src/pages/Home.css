@@ -1,0 +1,1022 @@
+:root {
+  --g900: #16423C;
+  --g700: #1F6B52;
+  --g500: #2E8B6A;
+  --g300: #52B788;
+  --g100: #DDE8D5;
+  --g50: #F0F7EC;
+  --beige: #F5F1E8;
+  --lime: #9AD14B;
+  --gold: #D8B75C;
+  --sky: #8FD3FF;
+  --text: #1C1C1C;
+  --muted: #667085;
+  --border: #E4E7EC;
+  --shadow: 0 4px 24px rgba(0, 0, 0, .08);
+  --shadow-lg: 0 12px 48px rgba(0, 0, 0, .14);
+
+  /* Added for the "STart" redesign (ST-Planet Figma file) — the pale
+     cream/gold accent used for "STart" in the hero and the "difference."
+     highlight, the mint section background behind Open Opportunities, the
+     ivory final-CTA background, the two track badge palettes, and the blue
+     used for card CTA links. Kept separate from --gold (a darker mustard
+     already used elsewhere) rather than overloading it. */
+  --cream-gold: #F3E2A0;
+  --mint-bg: #E7EFEA;
+  --cream: #FBF6E7;
+  --badge-open-bg: #FBEAC5;
+  --badge-open-text: #8A6511;
+  --badge-app-bg: #E3E7FB;
+  --badge-app-text: #3D4FC2;
+  --link-blue: #3E5FE0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0
+}
+
+#root {
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: 0
+}
+
+.st-page {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: var(--text);
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+  width: 100%;
+  overflow-x: hidden
+}
+
+.st-page nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+
+    height: 67px;
+    background: #ffffff;
+    border-bottom: 1px solid #edf2ef;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+
+    transition: all .3s ease;
+}
+
+.st-page .nav-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+  height: 70px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  column-gap: 24px;
+}
+
+.st-page .logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none
+}
+
+.st-page .logo-lockup {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15
+}
+
+.st-page .logo-word {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--g900);
+  letter-spacing: -.02em
+}
+
+.st-page .logo-sub {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 2px
+}
+
+.st-page .nav-links {
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  gap: 36px
+}
+
+.st-page .nav-actions {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 18px
+}
+
+.st-page .nav-link {
+  color: #374151;
+  font-weight: 600;
+  font-size: 14.5px;
+  text-decoration: none;
+  font-family: inherit;
+  transition: color .2s
+}
+
+.st-page .nav-link:hover {
+  color: var(--g700)
+}
+
+.st-page .btn-primary {
+  padding: 9px 22px;
+  border-radius: 99px;
+  background: var(--g900);
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: all .2s;
+  text-decoration: none;
+  font-family: inherit;
+  display: inline-block
+}
+
+.st-page .btn-primary:hover {
+  background: var(--g700);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(31, 107, 82, .35)
+}
+
+/* HERO — one photo section (image + dark scrim for legibility), headline
+   and CTAs sitting over it, and a stat band anchored to the bottom edge
+   overlapping the photo. Replaces the old two-part hero-banner + gradient
+   hero (the banner was a dead full-viewport image section with no content
+   on it — this redesign folds the photo and the copy into one section, as
+   the Figma frame shows). */
+.st-page .hero {
+  position: relative;
+  min-height: 720px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+}
+
+/* This image (hero-start.jpg) already has SankalpTaru's dark-green
+   gradient/scrim baked in on its left side for text legibility — unlike
+   the old hero3.jpg, it needs no separate CSS overlay on top. Cropped from
+   the center so cover-scaling (this section is much taller than the
+   source photo's own aspect ratio) trims top/bottom rather than the
+   left/right edges, keeping that baked-in gradient and the subject's
+   position intact at any viewport width. */
+.st-page .hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  z-index: 0
+}
+
+.st-page .hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 150px 32px 210px;
+  width: 100%
+}
+
+.st-page .hero-title {
+  font-size: clamp(36px, 5vw, 58px);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.15;
+  letter-spacing: -.02em;
+  max-width: 640px;
+  text-shadow: 0 2px 20px rgba(15, 45, 40, .5)
+}
+
+.st-page .accent-italic {
+  font-style: italic;
+  color: var(--cream-gold)
+}
+
+.st-page .hero-sub {
+  font-size: 16.5px;
+  color: rgba(255, 255, 255, .85);
+  line-height: 1.7;
+  margin: 18px 0 32px;
+  max-width: 460px
+}
+
+.st-page .hero-ctas {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  flex-wrap: wrap
+}
+
+.st-page .btn-hero-white {
+  padding: 14px 26px;
+  border-radius: 99px;
+  background: #fff;
+  color: var(--g900);
+  font-weight: 700;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  transition: all .2s;
+  font-family: inherit
+}
+
+.st-page .btn-hero-white:hover {
+  background: var(--cream-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .18)
+}
+
+.st-page .btn-hero-play {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  font-size: 14.5px;
+  cursor: pointer;
+  font-family: inherit
+}
+
+.st-page .play-circle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, .7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  padding-left: 2px;
+  transition: background .2s
+}
+
+.st-page .btn-hero-play:hover .play-circle {
+  background: rgba(255, 255, 255, .15)
+}
+
+/* Stat band overlapping the bottom of the hero photo */
+.st-page .hero-stat-band {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  background: rgba(15, 45, 40, .84);
+  backdrop-filter: blur(6px);
+  padding: 22px min(6vw, 64px)
+}
+
+.st-page .hero-band-stat {
+  position: relative;
+  text-align: left;
+  padding: 0 clamp(16px, 2.4vw, 32px)
+}
+
+.st-page .hero-band-divider {
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 1px;
+  background: rgba(255, 255, 255, .2)
+}
+
+.st-page .hero-band-num {
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -.02em
+}
+
+.st-page .hero-band-num .stat-suffix {
+  color: var(--cream-gold)
+}
+
+.st-page .hero-band-label {
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, .65);
+  margin-top: 2px
+}
+
+/* Sections */
+.st-page section {
+  padding: 96px 32px;
+}
+
+.st-page .section-inner {
+  max-width: 1280px;
+  margin: 0 auto
+}
+
+.st-page .eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 16px
+}
+
+.st-page .eyebrow-gold {
+  color: var(--cream-gold)
+}
+
+.st-page .section-title {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800;
+  color: var(--g900);
+  letter-spacing: -.03em;
+  line-height: 1.15;
+  margin-bottom: 16px
+}
+
+/* One Community. Many Ways to STart. */
+.st-page .community-section {
+  background: #fff
+}
+
+.st-page .community-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center
+}
+
+.st-page .community-title {
+  font-size: clamp(32px, 4vw, 44px);
+  font-weight: 800;
+  color: #20262B;
+  line-height: 1.18;
+  letter-spacing: -.02em
+}
+
+.st-page .accent-green {
+  color: var(--g700)
+}
+
+.st-page .community-text {
+  font-size: 16.5px;
+  color: #4B5563;
+  line-height: 1.75;
+  margin-bottom: 28px;
+  max-width: 520px
+}
+
+.st-page .value-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 40px
+}
+
+.st-page .value-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #1F2937
+}
+
+.st-page .check-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--g100);
+  color: var(--g700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 800;
+  flex-shrink: 0
+}
+
+/* Open Opportunities */
+.st-page .opps-section {
+  background: var(--mint-bg)
+}
+
+.st-page .track-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin: 28px 0 44px
+}
+
+.st-page .track-legend-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  max-width: 320px
+}
+
+.st-page .track-legend-item strong {
+  display: block;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #1F2937;
+  margin-bottom: 2px
+}
+
+.st-page .track-legend-item p {
+  font-size: 13px;
+  color: var(--muted)
+}
+
+.st-page .legend-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0
+}
+
+.st-page .legend-open {
+  background: var(--badge-open-bg);
+  color: var(--badge-open-text)
+}
+
+.st-page .legend-application {
+  background: var(--badge-app-bg);
+  color: var(--badge-app-text)
+}
+
+.st-page .opps-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px
+}
+
+.st-page .opp-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 22px;
+  position: relative;
+  cursor: pointer;
+  transition: all .25s;
+  box-shadow: 0 1px 2px rgba(16, 24, 32, .04)
+}
+
+.st-page .opp-card:hover {
+  box-shadow: var(--shadow);
+  transform: translateY(-4px)
+}
+
+.st-page .opp-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding-right: 34px
+}
+
+.st-page .track-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 99px;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-transform: uppercase
+}
+
+.st-page .badge-open {
+  background: var(--badge-open-bg);
+  color: var(--badge-open-text)
+}
+
+.st-page .badge-application {
+  background: var(--badge-app-bg);
+  color: var(--badge-app-text)
+}
+
+.st-page .opp-external {
+  color: var(--muted);
+  font-size: 14px
+}
+
+.st-page .opp-title {
+  font-size: 16.5px;
+  font-weight: 700;
+  color: #1F2937;
+  margin-bottom: 8px;
+  line-height: 1.3
+}
+
+.st-page .opp-meta {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-bottom: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px
+}
+
+.st-page .opp-meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px
+}
+
+.st-page .opp-desc {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-top: 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden
+}
+
+.st-page .opp-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+  margin-top: 16px
+}
+
+.st-page .opp-claim-count {
+  font-size: 11.5px;
+  color: var(--muted)
+}
+
+.st-page .opp-cta-link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--link-blue);
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px
+}
+
+.st-page .opp-cta-link:hover {
+  text-decoration: underline
+}
+
+.st-page .opps-empty {
+  color: var(--muted);
+  text-align: center;
+  padding: 32px 0
+}
+
+.st-page .opps-view-all {
+  text-align: center;
+  margin-top: 40px
+}
+
+.st-page .btn-view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 26px;
+  border-radius: 99px;
+  background: var(--g900);
+  color: #fff;
+  font-weight: 700;
+  font-size: 14.5px;
+  text-decoration: none;
+  transition: all .2s
+}
+
+.st-page .btn-view-all:hover {
+  background: var(--g700);
+  transform: translateY(-2px)
+}
+
+.st-page .save-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1.5px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all .2s;
+  font-size: 14px
+}
+
+.st-page .save-btn:hover {
+  border-color: var(--gold);
+  background: rgba(216, 183, 92, .1)
+}
+
+.st-page .save-btn.saved {
+  border-color: var(--gold);
+  background: rgba(216, 183, 92, .1)
+}
+
+/* Opportunity detail modal — opened by clicking any opp-card. Real content
+   only (GET /public/opportunities/:id). */
+.st-page .opp-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(22, 66, 60, .55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1000
+}
+
+.st-page .opp-modal {
+  background: #fff;
+  border-radius: 20px;
+  padding: 32px;
+  max-width: 560px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: var(--shadow-lg)
+}
+
+.st-page .opp-modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .2s
+}
+
+.st-page .opp-modal-close:hover {
+  border-color: var(--g300);
+  color: var(--g900)
+}
+
+.st-page .opp-modal-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--g900);
+  margin: 14px 0 10px;
+  line-height: 1.25;
+  padding-right: 32px
+}
+
+.st-page .opp-modal-meta {
+  margin-bottom: 18px
+}
+
+.st-page .opp-modal-text {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.7;
+  margin-bottom: 18px
+}
+
+.st-page .opp-modal-block {
+  margin-bottom: 18px
+}
+
+.st-page .opp-modal-block h4 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--g900);
+  margin-bottom: 6px
+}
+
+.st-page .opp-modal-block p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.7
+}
+
+.st-page .opp-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 1px solid var(--border);
+  padding-top: 18px;
+  margin-top: 6px
+}
+
+@media (max-width: 640px) {
+  .st-page .opp-modal {
+    padding: 24px;
+    border-radius: 16px
+  }
+
+  .st-page .opp-modal-footer {
+    flex-direction: column;
+    align-items: stretch
+  }
+}
+
+/* Stats band — real numbers, unchanged data source, kept as its own dark
+   band so Certificates Issued still has somewhere to show even though the
+   hero's photo-overlay band only has room for 3 stats. */
+.st-page .stats-section {
+  background: linear-gradient(135deg, var(--g900), var(--g700));
+  padding: 72px 32px
+}
+
+.st-page .stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center
+}
+
+.st-page .stat-num {
+  font-size: clamp(36px, 5vw, 52px);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -.03em
+}
+
+.st-page .stat-num .stat-suffix {
+  color: var(--cream-gold)
+}
+
+.st-page .stat-label {
+  font-size: 14px;
+  color: rgba(255, 255, 255, .65);
+  margin-top: 6px;
+  font-weight: 500
+}
+
+/* How It Works */
+.st-page .how-section {
+  background: linear-gradient(160deg, var(--g900) 0%, #0F2D28 100%)
+}
+
+.st-page .how-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start
+}
+
+.st-page .how-title {
+  font-size: clamp(28px, 3.6vw, 40px);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.3
+}
+
+.st-page .accent-gold {
+  color: var(--cream-gold)
+}
+
+.st-page .how-right {
+  display: flex;
+  flex-direction: column
+}
+
+.st-page .how-step {
+  display: flex;
+  gap: 22px;
+  padding: 22px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, .12)
+}
+
+.st-page .how-step:last-child {
+  border-bottom: none
+}
+
+.st-page .how-num {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--cream-gold);
+  flex-shrink: 0;
+  width: 28px
+}
+
+.st-page .how-step-body h4 {
+  font-size: 15.5px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 6px
+}
+
+.st-page .how-step-body p {
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, .6);
+  line-height: 1.6
+}
+
+/* Final CTA */
+.st-page .final-cta {
+  background: var(--cream);
+  text-align: center;
+  padding: 96px 32px
+}
+
+.st-page .final-cta-title {
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: 800;
+  color: #20262B;
+  margin: 14px 0 12px
+}
+
+.st-page .final-cta-sub {
+  font-size: 16px;
+  color: var(--muted);
+  margin-bottom: 32px
+}
+
+.st-page .final-cta-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  flex-wrap: wrap
+}
+
+.st-page .btn-cta-primary {
+  padding: 15px 30px;
+  border-radius: 99px;
+  background: var(--g900);
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  transition: all .2s;
+  font-family: inherit
+}
+
+.st-page .btn-cta-primary:hover {
+  background: var(--g700);
+  transform: translateY(-2px)
+}
+
+.st-page .already-text {
+  font-size: 14px;
+  color: var(--muted)
+}
+
+.st-page .already-text a {
+  color: var(--g700);
+  font-weight: 700;
+  text-decoration: underline
+}
+
+/* Footer — deliberately UNCHANGED from the pre-redesign page; the Figma
+   frame's own footer was left blank with a note to reuse this one. */
+.st-page footer {
+  background: var(--g900);
+  padding: 48px 32px;
+  text-align: center;
+  color: rgba(255, 255, 255, .4);
+  font-size: 13px
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px)
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0)
+  }
+}
+
+.st-page .animate-in {
+  opacity: 0;
+  animation: fadeUp .7s ease forwards
+}
+
+.st-page .delay-1 {
+  animation-delay: .1s
+}
+
+.st-page .delay-2 {
+  animation-delay: .2s
+}
+
+/* Responsive */
+@media(max-width: 900px) {
+  .st-page .community-grid,
+  .st-page .how-grid {
+    grid-template-columns: 1fr;
+    gap: 32px
+  }
+
+  .st-page .opps-strip {
+    grid-template-columns: 1fr 1fr
+  }
+
+  .st-page .hero-stat-band {
+    justify-content: flex-start
+  }
+}
+
+@media(max-width: 768px) {
+  .st-page .hero-content {
+    padding: 130px 24px 190px
+  }
+
+  .st-page .nav-links {
+    display: none
+  }
+
+  .st-page .opps-strip {
+    grid-template-columns: 1fr
+  }
+
+  .st-page .stats-grid {
+    grid-template-columns: 1fr 1fr
+  }
+}
+
+@media(max-width: 480px) {
+  .st-page section {
+    padding: 64px 20px
+  }
+
+  .st-page .nav-inner {
+    padding: 0 16px
+  }
+
+  .st-page .hero-content {
+    padding: 120px 20px 220px
+  }
+
+  .st-page .hero-ctas {
+    flex-direction: column;
+    align-items: flex-start
+  }
+
+  .st-page .hero-stat-band {
+    flex-direction: column;
+    gap: 14px;
+    padding: 20px
+  }
+
+  .st-page .hero-band-stat {
+    padding: 0 0 0 16px
+  }
+
+  .st-page .hero-band-divider {
+    display: none
+  }
+
+  .st-page .stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px
+  }
+
+  .st-page .final-cta-actions {
+    flex-direction: column;
+    gap: 16px
+  }
+}

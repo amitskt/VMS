@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+
+# Secrets — real values live only on each machine/server, never in git
+.env
+.env.*
+!.env.example
+
+# Build output
+dist/
+dist-ssr/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor / OS junk
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+
+# Not part of the app
+Claude outputs/
+
+# Anything the user has already marked for removal
+**/_to_delete/
+
+# Scratch / one-off test output, not part of the app
+vmsbackend/_diag_tmp.js
+vmsbackend/_tmp_cert_test/
+*.bak
+vmsbackend/controllers/settingsController-1.js

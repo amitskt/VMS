@@ -1,0 +1,89 @@
+@import './VolunteerShell.css';
+
+/* Everything below is specific to the My Profile page and scoped under
+   .page-my-profile so it can never collide with another page's CSS. */
+
+.page-my-profile .content {
+  padding: 20px 24px;
+  max-width: 600px;
+}
+
+.page-my-profile .back-link {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-bottom: 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--forest);
+  cursor: pointer;
+}
+
+.page-my-profile .back-link:hover {
+  text-decoration: underline;
+}
+
+.page-my-profile .profile-card {
+  background: var(--white);
+  border: 1.5px solid var(--gray-200);
+  border-radius: 20px;
+  padding: 28px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.page-my-profile .profile-avatar {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--lime), #6bab20);
+  color: var(--deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.page-my-profile .pa-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.page-my-profile .profile-fields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.page-my-profile .pf-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gray-400);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 3px;
+}
+
+.page-my-profile .pf-value {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--deep);
+}
+
+@media (max-width: 640px) {
+  .page-my-profile .content {
+    padding: 16px;
+  }
+  .page-my-profile .profile-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 22px;
+  }
+}

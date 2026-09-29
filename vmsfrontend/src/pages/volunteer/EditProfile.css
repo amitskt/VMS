@@ -1,0 +1,163 @@
+@import './VolunteerShell.css';
+
+/* Page-specific styles for the volunteer "Profile Settings" page
+   (EditProfile.jsx). Combines the visual language of the onboarding
+   wizard's Profile.jsx (Step 2) and Skill.jsx (Step 3) into one page, but
+   every rule here is scoped under .page-edit-profile and re-declared from
+   scratch rather than importing Profile.css/Skill.css — those two define
+   several identically-named classes (.pill, .check-pill, .bottom-bar, ...)
+   with different rule bodies, so importing both would recreate the exact
+   cascade collision VolunteerShell.css's own file header warns about.
+   Shared chrome (sidebar/topbar/section-card/empty-state/btn-primary/
+   btn-ghost) comes from VolunteerShell.css. */
+
+.page-edit-profile .content { max-width: 900px; }
+
+.page-edit-profile .page-intro { margin-bottom: 20px; }
+.page-edit-profile .page-intro h1 { font-size: 22px; font-weight: 800; color: var(--deep); margin-bottom: 4px; }
+.page-edit-profile .page-intro p { font-size: 13px; color: var(--gray-600); }
+
+.page-edit-profile .form-card { background: var(--white); border: 1.5px solid var(--gray-200); border-radius: 20px; padding: 24px; margin-bottom: 18px; }
+.page-edit-profile .form-card h3 { font-size: 15px; font-weight: 800; color: var(--deep); margin-bottom: 4px; }
+.page-edit-profile .form-card .card-subtitle { font-size: 13px; color: var(--gray-400); margin-bottom: 16px; }
+
+/* PHOTO UPLOAD */
+.page-edit-profile .photo-upload-section { display: flex; align-items: center; gap: 20px; margin: 16px 0 24px; flex-wrap: wrap; }
+.page-edit-profile .photo-preview { position: relative; width: 88px; height: 88px; border-radius: 50%; background: var(--sage); display: flex; align-items: center; justify-content: center; font-size: 32px; cursor: pointer; overflow: hidden; flex-shrink: 0; border: 3px solid var(--white); box-shadow: 0 0 0 2px var(--gray-200); }
+.page-edit-profile .photo-preview img { width: 100%; height: 100%; object-fit: cover; }
+.page-edit-profile .photo-preview .edit-overlay { position: absolute; inset: 0; background: rgba(22,66,60,.55); color: var(--white); font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity .2s; }
+.page-edit-profile .photo-preview:hover .edit-overlay { opacity: 1; }
+.page-edit-profile .photo-upload-info h4 { font-size: 14px; font-weight: 700; color: var(--gray-800); margin-bottom: 4px; }
+.page-edit-profile .photo-upload-info p { font-size: 12px; color: var(--gray-400); margin-bottom: 10px; max-width: 340px; }
+.page-edit-profile .upload-btn { padding: 9px 16px; border: 1.5px solid var(--gray-200); background: var(--white); border-radius: 10px; font-family: inherit; font-size: 13px; font-weight: 700; color: var(--forest); cursor: pointer; transition: all .2s; }
+.page-edit-profile .upload-btn:hover { border-color: var(--forest); background: rgba(31,107,82,.04); }
+
+/* FORM GRID */
+.page-edit-profile .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.page-edit-profile .form-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+.page-edit-profile .field-group { display: flex; flex-direction: column; }
+.page-edit-profile .field-group.span-2 { grid-column: span 2; }
+.page-edit-profile .field-group.span-3 { grid-column: span 3; }
+.page-edit-profile label { font-size: 13px; font-weight: 600; color: var(--gray-800); display: block; margin-bottom: 6px; }
+.page-edit-profile label .required { color: #ef4444; }
+.page-edit-profile label .optional { color: var(--gray-400); font-weight: 400; font-size: 12px; }
+.page-edit-profile input[type="text"],
+.page-edit-profile input[type="tel"],
+.page-edit-profile input[type="number"],
+.page-edit-profile input[type="time"],
+.page-edit-profile input[type="url"],
+.page-edit-profile select,
+.page-edit-profile textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--gray-800);
+  outline: none;
+  transition: border .2s;
+  background: var(--white);
+}
+.page-edit-profile input:focus,
+.page-edit-profile select:focus,
+.page-edit-profile textarea:focus { border-color: var(--forest); box-shadow: 0 0 0 3px rgba(31,107,82,.1); }
+.page-edit-profile input.error,
+.page-edit-profile select.error { border-color: #ef4444; }
+.page-edit-profile input:disabled { background: var(--gray-50); color: var(--gray-400); }
+.page-edit-profile textarea { resize: vertical; }
+.page-edit-profile .field-hint { font-size: 11px; color: var(--gray-400); margin-top: 5px; display: block; }
+.page-edit-profile .field-error { font-size: 11px; color: #ef4444; margin-top: 5px; display: none; }
+.page-edit-profile .field-error.visible { display: block; }
+.page-edit-profile .field-loading { font-size: 11px; color: var(--gray-400); margin-top: 5px; display: block; }
+.page-edit-profile .char-counter { text-align: right; font-size: 11px; color: var(--gray-400); margin-top: 4px; }
+.page-edit-profile .char-counter.warn { color: var(--gold); }
+.page-edit-profile .char-counter.over { color: #ef4444; }
+
+@keyframes epShake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+.page-edit-profile .shake { animation: epShake .3s ease; }
+
+/* ENGAGEMENT CARDS */
+.page-edit-profile .engagement-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.page-edit-profile .eng-card { border: 1.5px solid var(--gray-200); border-radius: 14px; padding: 14px; cursor: pointer; transition: all .2s; text-align: center; }
+.page-edit-profile .eng-card:hover { border-color: var(--forest); background: rgba(31,107,82,.03); }
+.page-edit-profile .eng-card.selected { border-color: var(--forest); background: rgba(31,107,82,.06); }
+.page-edit-profile .eng-card .eng-icon { font-size: 22px; margin-bottom: 6px; }
+.page-edit-profile .eng-card h4 { font-size: 12px; font-weight: 700; color: var(--deep); margin-bottom: 3px; }
+.page-edit-profile .eng-card p { font-size: 11px; color: var(--gray-400); line-height: 1.4; }
+
+/* RESUME */
+.page-edit-profile .resume-box { border: 1.5px dashed var(--gray-200); border-radius: 16px; padding: 18px; }
+.page-edit-profile .resume-current,
+.page-edit-profile .resume-empty { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.page-edit-profile .resume-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--sage); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+.page-edit-profile .resume-info { flex: 1; min-width: 160px; }
+.page-edit-profile .resume-info h5 { font-size: 13px; font-weight: 700; color: var(--gray-800); word-break: break-word; }
+.page-edit-profile .resume-info p { font-size: 11px; color: var(--gray-400); margin-top: 2px; }
+.page-edit-profile .resume-actions { display: flex; gap: 8px; }
+.page-edit-profile .resume-actions a.btn-ghost { text-decoration: none; display: inline-flex; align-items: center; }
+
+/* COMPETENCY GRID (skills) */
+.page-edit-profile .competency-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.page-edit-profile .comp-card { background: var(--white); border: 1.5px solid var(--gray-200); border-radius: 16px; overflow: hidden; cursor: pointer; transition: all .25s; }
+.page-edit-profile .comp-card:hover { border-color: var(--forest); box-shadow: 0 4px 16px rgba(31,107,82,.1); }
+.page-edit-profile .comp-card.expanded { border-color: var(--forest); }
+.page-edit-profile .comp-header { display: flex; align-items: center; gap: 12px; padding: 16px; transition: background .25s; }
+.page-edit-profile .comp-card.expanded .comp-header { background: rgba(31,107,82,.05); }
+.page-edit-profile .comp-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+.page-edit-profile .comp-title { min-width: 0; }
+.page-edit-profile .comp-title h4 { font-size: 14px; font-weight: 700; color: var(--gray-800); }
+.page-edit-profile .comp-title p { font-size: 11px; color: var(--gray-400); margin-top: 2px; }
+.page-edit-profile .comp-arrow { margin-left: auto; font-size: 16px; color: var(--gray-400); transition: transform .25s; flex-shrink: 0; }
+.page-edit-profile .comp-card.expanded .comp-arrow { transform: rotate(90deg); color: var(--forest); }
+.page-edit-profile .comp-selected-count { margin-left: auto; background: var(--forest); color: var(--white); width: 22px; height: 22px; border-radius: 50%; font-size: 11px; font-weight: 700; display: none; align-items: center; justify-content: center; flex-shrink: 0; }
+.page-edit-profile .comp-selected-count.visible { display: flex; }
+.page-edit-profile .comp-body { padding: 0 16px; max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .35s ease; }
+.page-edit-profile .comp-card.expanded .comp-body { max-height: 400px; padding: 0 16px 16px; }
+.page-edit-profile .skill-list { display: flex; flex-direction: column; gap: 8px; }
+.page-edit-profile .skill-item { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border: 1.5px solid var(--gray-200); border-radius: 10px; cursor: pointer; transition: all .2s; }
+.page-edit-profile .skill-item:hover { border-color: var(--forest); background: rgba(31,107,82,.03); }
+.page-edit-profile .skill-item.checked { border-color: var(--forest); background: rgba(31,107,82,.06); }
+.page-edit-profile .skill-cb { width: 18px; height: 18px; border: 2px solid var(--gray-200); border-radius: 5px; transition: all .2s; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--white); }
+.page-edit-profile .skill-item.checked .skill-cb { background: var(--forest); border-color: var(--forest); }
+.page-edit-profile .skill-name { font-size: 13px; color: var(--gray-800); font-weight: 500; }
+
+/* PILLS (mode) + CHECK-PILLS (availability) */
+.page-edit-profile .pill-group { display: flex; flex-wrap: wrap; gap: 8px; }
+.page-edit-profile .pill { padding: 8px 16px; border: 1.5px solid var(--gray-200); border-radius: 30px; font-family: inherit; font-size: 13px; font-weight: 500; color: var(--gray-600); background: var(--white); cursor: pointer; transition: all .2s; user-select: none; }
+.page-edit-profile .pill:hover { border-color: var(--forest); color: var(--forest); }
+.page-edit-profile .pill.selected { background: var(--forest); border-color: var(--forest); color: var(--white); font-weight: 600; }
+
+.page-edit-profile .check-pill-group { display: flex; flex-direction: column; gap: 10px; }
+.page-edit-profile .check-pill { display: flex; align-items: center; gap: 12px; padding: 13px 16px; border: 1.5px solid var(--gray-200); border-radius: 14px; cursor: pointer; transition: all .2s; background: var(--white); }
+.page-edit-profile .check-pill:hover { border-color: var(--forest); background: rgba(31,107,82,.03); }
+.page-edit-profile .check-pill.checked { border-color: var(--forest); background: rgba(31,107,82,.06); }
+.page-edit-profile .check-pill .box { width: 20px; height: 20px; border-radius: 6px; border: 1.5px solid var(--gray-400); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 12px; color: var(--white); transition: all .2s; }
+.page-edit-profile .check-pill.checked .box { background: var(--forest); border-color: var(--forest); }
+.page-edit-profile .check-pill-text h5 { font-size: 14px; font-weight: 700; color: var(--gray-800); }
+.page-edit-profile .check-pill-text p { font-size: 12px; color: var(--gray-400); margin-top: 2px; }
+.page-edit-profile .sub-question { margin-top: 14px; margin-left: 18px; padding: 16px; border-left: 2.5px solid var(--sage); background: var(--gray-50); border-radius: 0 12px 12px 0; display: flex; flex-direction: column; gap: 12px; }
+.page-edit-profile .sub-question > label { margin-bottom: 2px; }
+.page-edit-profile .time-row { display: flex; gap: 16px; flex-wrap: wrap; }
+.page-edit-profile .time-field { display: flex; flex-direction: column; gap: 6px; min-width: 140px; }
+.page-edit-profile .time-field label { font-size: 12px; }
+
+/* SAVE BAR */
+.page-edit-profile .bottom-bar { background: var(--white); border: 1.5px solid var(--gray-200); border-radius: 18px; padding: 16px 22px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; box-shadow: 0 1px 8px rgba(0,0,0,.04); margin-bottom: 8px; }
+.page-edit-profile .bottom-left { font-size: 13px; color: var(--gray-600); }
+.page-edit-profile .save-error-text { color: #ef4444; }
+.page-edit-profile .save-success-text { color: var(--forest); font-weight: 700; }
+.page-edit-profile .btn-primary.saving { background: var(--lime); color: var(--deep); }
+
+/* RESPONSIVE */
+@media (max-width: 640px) {
+  .page-edit-profile .form-grid,
+  .page-edit-profile .form-grid.cols-3 { grid-template-columns: 1fr; }
+  .page-edit-profile .field-group.span-2,
+  .page-edit-profile .field-group.span-3 { grid-column: span 1; }
+  .page-edit-profile .competency-grid { grid-template-columns: 1fr; }
+  .page-edit-profile .engagement-cards { grid-template-columns: repeat(2, 1fr); }
+  .page-edit-profile .photo-upload-section { gap: 14px; }
+  .page-edit-profile .form-card { padding: 18px; }
+  .page-edit-profile .bottom-bar { flex-direction: column; align-items: stretch; }
+}

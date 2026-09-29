@@ -1,0 +1,153 @@
+/**
+ * Self-contained styling for the shared ProfileMenu component — deliberately
+ * NOT scoped under a page-root class (unlike .page-volunteers, .page-settings,
+ * etc.) since this one component is dropped into 19 different pages across
+ * both the admin and volunteer shells. It only reads the :root design tokens
+ * (--forest, --deep, --gray-*, --white, ...) that AdminShell.css/
+ * VolunteerShell.css already define globally — every page that imports this
+ * file already imports one of those two shells first, so the tokens are
+ * always present by the time this resolves.
+ */
+
+.profile-menu {
+  position: relative;
+  display: inline-flex;
+}
+
+/* The avatar itself keeps whatever look the page already gave it via
+   avatarClassName (avatar / avatar--sm) — this just makes it act like a
+   real button instead of a static circle. */
+.profile-menu > button.avatar,
+.profile-menu > button.avatar.avatar--sm {
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/* A volunteer's uploaded profile photo (Volunteer.photoUrl) fills the
+   circle exactly in place of the initial letter — the button around it
+   keeps whatever size/border-radius avatarClassName already gave it. */
+.pm-avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.profile-menu-panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 40;
+  min-width: 168px;
+  background: var(--white);
+  border: 1.5px solid var(--gray-200);
+  border-radius: 14px;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.14);
+  padding: 6px;
+}
+
+.profile-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  background: none;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--gray-800);
+  text-align: left;
+  cursor: pointer;
+}
+
+.profile-menu-item:hover {
+  background: var(--gray-50);
+}
+
+.profile-menu-item--danger {
+  color: #b42318;
+}
+
+.profile-menu-item--danger:hover {
+  background: #fef3f2;
+}
+
+.pm-icon {
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+/* Logout confirmation — same overlay/card/buttons shape the admin side
+   already uses per-page (.modal-overlay / .modal-card / .modal-btns), given
+   its own prefixed class names here so this one component looks right
+   whether it's dropped into an admin page or a volunteer page that has no
+   modal styling of its own at all (VolunteerShell.css has none today). */
+.pm-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(22, 66, 60, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.pm-modal-card {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 28px;
+  max-width: 340px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+.pm-modal-card h3 {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--deep);
+  margin-bottom: 10px;
+}
+
+.pm-modal-card p {
+  font-size: 14px;
+  color: var(--gray-600);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.pm-modal-btns {
+  display: flex;
+  gap: 10px;
+}
+
+.pm-btn-cancel,
+.pm-btn-confirm {
+  flex: 1;
+  padding: 11px;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.pm-btn-cancel {
+  border: 1.5px solid var(--gray-200);
+  background: var(--white);
+  color: var(--gray-600);
+  font-weight: 600;
+}
+
+.pm-btn-confirm {
+  border: none;
+  background: #b42318;
+  color: var(--white);
+}

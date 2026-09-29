@@ -1,0 +1,83 @@
+@import './VolunteerShell.css';
+
+/* Converted from 12-my-tasks.html. Page-specific styles scoped under
+   .page-my-tasks — shared chrome (sidebar/topbar/empty-state/form-error/
+   btn-primary/btn-ghost) comes from VolunteerShell.css. */
+
+.page-my-tasks .content { padding: 24px 28px; }
+
+.page-my-tasks .section-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+.page-my-tasks .section-header h2 { font-size: 16px; font-weight: 800; color: var(--deep); }
+.page-my-tasks .section-badge { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
+.page-my-tasks .badge-a { background: #e8f5ee; color: var(--forest); }
+.page-my-tasks .badge-b { background: #eff6ff; color: #1d4ed8; }
+
+.page-my-tasks .empty-state h3 { font-size: 18px; font-weight: 700; color: var(--gray-600); margin-bottom: 8px; }
+.page-my-tasks .empty-state .e-btn { display: inline-block; margin-top: 16px; padding: 12px 24px; background: var(--forest); color: var(--white); border: none; border-radius: 12px; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer; }
+
+.page-my-tasks .task-card { background: var(--white); border-radius: 20px; border: 1.5px solid var(--gray-200); padding: 24px; margin-bottom: 16px; box-shadow: 0 1px 6px rgba(0,0,0,.04); }
+.page-my-tasks .task-card.revision { border-color: #f59e0b; border-width: 2px; background: #fffdf5; }
+.page-my-tasks .task-card.completed { border-color: var(--lime); background: linear-gradient(135deg, #f8fff6, var(--white)); }
+
+.page-my-tasks .task-card-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 10px; gap: 10px; }
+.page-my-tasks .task-card-top h3 { font-size: 17px; font-weight: 800; color: var(--deep); flex: 1; }
+.page-my-tasks .status-chip { font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: 20px; white-space: nowrap; }
+.page-my-tasks .chip-inprogress { background: #eff6ff; color: #1d4ed8; }
+.page-my-tasks .chip-assigned { background: #f3e8ff; color: #7c3aed; }
+.page-my-tasks .chip-revision { background: #fffbeb; color: #92400e; }
+.page-my-tasks .chip-submitted { background: #f3e8ff; color: #7c3aed; }
+.page-my-tasks .chip-completed { background: #e8f5ee; color: var(--forest); }
+
+.page-my-tasks .task-meta { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 14px; }
+.page-my-tasks .meta-tag { font-size: 12px; color: var(--gray-600); display: flex; align-items: center; gap: 4px; }
+
+.page-my-tasks .task-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+.page-my-tasks .detail-field { background: var(--gray-50); border-radius: 10px; padding: 10px 12px; }
+.page-my-tasks .detail-field label { font-size: 10px; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: .05em; display: block; margin-bottom: 3px; }
+.page-my-tasks .detail-field p { font-size: 13px; font-weight: 600; color: var(--gray-800); }
+
+.page-my-tasks .comments-block { margin-bottom: 14px; }
+.page-my-tasks .comment-item { background: var(--gray-50); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; font-size: 13px; color: var(--gray-800); }
+.page-my-tasks .comment-item.from-staff { background: #fffbeb; }
+.page-my-tasks .comment-item .c-meta { font-size: 11px; color: var(--gray-400); margin-top: 4px; }
+
+.page-my-tasks .upload-section { background: var(--gray-50); border-radius: 14px; padding: 18px; margin-bottom: 14px; }
+.page-my-tasks .upload-section label { font-size: 13px; font-weight: 700; color: var(--gray-800); display: block; margin-bottom: 10px; }
+.page-my-tasks .upload-drop { border: 2px dashed var(--gray-200); border-radius: 12px; padding: 24px; text-align: center; cursor: pointer; transition: all .2s; }
+.page-my-tasks .upload-drop:hover { border-color: var(--forest); background: rgba(31,107,82,.03); }
+.page-my-tasks .upload-drop .ud-icon { font-size: 28px; margin-bottom: 8px; }
+.page-my-tasks .upload-drop h4 { font-size: 14px; font-weight: 700; color: var(--gray-800); margin-bottom: 4px; word-break: break-all; }
+.page-my-tasks .upload-drop p { font-size: 12px; color: var(--gray-400); }
+.page-my-tasks .or-divider { display: flex; align-items: center; gap: 10px; margin: 12px 0; }
+.page-my-tasks .or-divider::before, .page-my-tasks .or-divider::after { content: ''; flex: 1; height: 1px; background: var(--gray-200); }
+.page-my-tasks .or-divider span { font-size: 12px; color: var(--gray-400); }
+.page-my-tasks .link-input { width: 100%; padding: 10px 14px; border: 1.5px solid var(--gray-200); border-radius: 10px; font-family: inherit; font-size: 13px; outline: none; transition: border .2s; }
+.page-my-tasks .link-input:focus { border-color: var(--forest); }
+.page-my-tasks .char-note { font-size: 12px; color: var(--gray-400); margin-top: 6px; }
+
+.page-my-tasks .story-area { width: 100%; padding: 12px 14px; border: 1.5px solid var(--gray-200); border-radius: 12px; font-family: inherit; font-size: 14px; resize: vertical; min-height: 100px; outline: none; transition: border .2s; }
+.page-my-tasks .story-area:focus { border-color: var(--forest); }
+
+.page-my-tasks .btn-submit { padding: 14px 28px; background: var(--forest); color: var(--white); border: none; border-radius: 14px; font-family: inherit; font-size: 16px; font-weight: 800; cursor: pointer; width: 100%; transition: all .25s; box-shadow: 0 4px 16px rgba(31,107,82,.25); }
+.page-my-tasks .btn-submit:hover:not(:disabled) { background: var(--deep); transform: translateY(-1px); }
+.page-my-tasks .btn-submit:disabled { opacity: .7; cursor: not-allowed; }
+.page-my-tasks .btn-submit.resubmit { background: var(--gold); }
+.page-my-tasks .btn-submit.resubmit:hover:not(:disabled) { background: #c49b3a; }
+
+.page-my-tasks .btn-view-cert { margin-top: 10px; padding: 8px 20px; background: var(--forest); color: white; border: none; border-radius: 10px; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; }
+
+.page-my-tasks .photos-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+.page-my-tasks .photo-thumb-img { width: 80px; height: 80px; border-radius: 10px; object-fit: cover; border: 2px solid var(--forest); }
+
+.page-my-tasks .add-comment-row { display: flex; gap: 8px; margin-top: 4px; }
+.page-my-tasks .add-comment-row .link-input { flex: 1; }
+.page-my-tasks .btn-ghost-sm { padding: 9px 14px; background: transparent; color: var(--forest); border: 1.5px solid var(--gray-200); border-radius: 10px; font-family: inherit; font-size: 12.5px; font-weight: 700; cursor: pointer; }
+.page-my-tasks .btn-ghost-sm:hover:not(:disabled) { border-color: var(--forest); background: rgba(31,107,82,.03); }
+.page-my-tasks .btn-ghost-sm:disabled { color: var(--gray-400); border-color: var(--gray-200); cursor: not-allowed; }
+
+.page-my-tasks .field-hint { font-size: 12px; color: var(--gray-400); margin-top: 5px; }
+
+@media (max-width: 900px) {
+  .page-my-tasks .content { padding: 16px; }
+  .page-my-tasks .task-detail-grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,293 @@
+@import './AdminShell.css';
+
+/* Everything below is specific to the Create/Edit Opportunity page and
+   scoped under .page-create-edit-opportunity — see AdminShell.css's header
+   comment for why that scoping exists. */
+
+.page-create-edit-opportunity .breadcrumb {
+  font-size: 12.5px;
+  color: var(--gray-400);
+  font-weight: 400;
+}
+
+.page-create-edit-opportunity .breadcrumb a {
+  color: var(--forest);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.page-create-edit-opportunity .topbar-title {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* SECTION CARD spacing — several stacked cards on this page, base look
+   comes from AdminShell.css's shared .section-card. */
+.page-create-edit-opportunity .section-card {
+  margin-bottom: 20px;
+}
+
+.page-create-edit-opportunity .section-card:last-child {
+  margin-bottom: 0;
+}
+
+.page-create-edit-opportunity .section-card h3 {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--deep);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* FORM */
+.page-create-edit-opportunity .field-optional {
+  color: var(--gray-400);
+  font-size: 11.5px;
+  font-weight: 400;
+  margin-left: 4px;
+}
+
+.page-create-edit-opportunity textarea.field-input {
+  resize: vertical;
+  min-height: 90px;
+  line-height: 1.6;
+}
+
+.page-create-edit-opportunity textarea.field-input.short {
+  min-height: 70px;
+}
+
+.page-create-edit-opportunity .field-input:disabled {
+  background: var(--gray-50);
+  color: var(--gray-400);
+  cursor: not-allowed;
+}
+
+.page-create-edit-opportunity .field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* SKILL GROUP — Skills Required is grouped by category (same categories a
+   volunteer sees at registration, Skill.jsx), each with its own heading
+   above a chip-select row. */
+.page-create-edit-opportunity .skill-group {
+  margin-bottom: 16px;
+}
+
+.page-create-edit-opportunity .skill-group:last-child {
+  margin-bottom: 0;
+}
+
+.page-create-edit-opportunity .skill-group-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gray-400);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+
+/* CHIP SELECT (skills + departments) */
+.page-create-edit-opportunity .chip-select {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.page-create-edit-opportunity .chip-option {
+  padding: 8px 14px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-600);
+  cursor: pointer;
+  transition: all 0.15s;
+  user-select: none;
+}
+
+.page-create-edit-opportunity .chip-option:hover {
+  border-color: var(--forest);
+}
+
+.page-create-edit-opportunity .chip-option.selected {
+  background: var(--forest);
+  border-color: var(--forest);
+  color: var(--white);
+}
+
+/* Locked chip (Department Head's own department, forced-selected) — no
+   hover affordance since it isn't interactive. */
+.page-create-edit-opportunity .chip-option.locked {
+  cursor: default;
+}
+
+.page-create-edit-opportunity .chip-option.locked:hover {
+  border-color: var(--forest);
+}
+
+/* TRACK TOGGLE */
+.page-create-edit-opportunity .track-toggle {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.page-create-edit-opportunity .track-option {
+  flex: 1;
+  padding: 16px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.page-create-edit-opportunity .track-option:hover {
+  border-color: var(--forest);
+}
+
+.page-create-edit-opportunity .track-option.selected {
+  border-color: var(--forest);
+  background: rgba(31, 107, 82, 0.04);
+}
+
+.page-create-edit-opportunity .track-option.locked {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.page-create-edit-opportunity .track-option.locked:hover {
+  border-color: var(--gray-200);
+}
+
+.page-create-edit-opportunity .track-option.locked.selected:hover {
+  border-color: var(--forest);
+}
+
+.page-create-edit-opportunity .track-option h4 {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--deep);
+  margin-bottom: 4px;
+}
+
+.page-create-edit-opportunity .track-option p {
+  font-size: 12px;
+  color: var(--gray-400);
+}
+
+.page-create-edit-opportunity .cert-note {
+  background: var(--sage);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 12.5px;
+  color: var(--forest);
+  font-weight: 600;
+}
+
+.page-create-edit-opportunity .toggle-locked {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: var(--gray-50);
+  border-radius: 10px;
+  font-size: 13px;
+  color: var(--gray-600);
+}
+
+/* RELATED DOCUMENTS (Track B) */
+.page-create-edit-opportunity .doc-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.page-create-edit-opportunity .doc-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: 10px;
+}
+
+.page-create-edit-opportunity .doc-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.page-create-edit-opportunity .doc-name {
+  flex: 1;
+  min-width: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--forest);
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.page-create-edit-opportunity .doc-name:hover {
+  text-decoration: underline;
+}
+
+.page-create-edit-opportunity .doc-remove {
+  flex-shrink: 0;
+  padding: 6px 12px;
+  border: 1.5px solid var(--gray-200);
+  background: var(--white);
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #b91c1c;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.page-create-edit-opportunity .doc-remove:hover {
+  border-color: #b91c1c;
+  background: #fef2f2;
+}
+
+.page-create-edit-opportunity .doc-remove:disabled {
+  color: var(--gray-400);
+  border-color: var(--gray-200);
+  cursor: not-allowed;
+  background: none;
+}
+
+.page-create-edit-opportunity .form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 20px;
+  margin-top: 8px;
+  border-top: 1px solid var(--gray-100);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .page-create-edit-opportunity .field-row {
+    grid-template-columns: 1fr;
+  }
+  .page-create-edit-opportunity .track-toggle {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-create-edit-opportunity .content {
+    padding: 16px;
+  }
+  .page-create-edit-opportunity .form-actions {
+    flex-wrap: wrap;
+  }
+}

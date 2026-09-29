@@ -1,0 +1,128 @@
+@import './AdminShell.css';
+
+/* Everything below is specific to the Departments page and scoped under
+   .page-departments so it can never collide with another page's CSS again —
+   even if another page reuses one of these class names later. */
+
+/* Hint is its own boxed element — a real bordered/tinted container with its
+   own internal padding and external margin, instead of bare text with just
+   a margin-bottom (which is what kept reading as "no spacing"). */
+.page-departments .dept-hint {
+  margin-top: 0;
+  margin-bottom: 24px;
+  padding: 18px 22px;
+  background: rgba(31, 107, 82, 0.05);
+  border: 1px solid rgba(31, 107, 82, 0.15);
+  border-radius: 14px;
+  line-height: 1.6;
+}
+
+/* DEPARTMENT GRID */
+.page-departments .dept-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.page-departments .dept-card {
+  background: var(--white);
+  border-radius: 18px;
+  padding: 20px;
+  border: 1.5px solid var(--gray-200);
+}
+
+.page-departments .dept-card h4 {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--deep);
+  margin-bottom: 10px;
+}
+
+.page-departments .dept-card .d-head {
+  font-size: 12.5px;
+  color: var(--gray-600);
+  margin-bottom: 10px;
+}
+
+.page-departments .dept-card .d-head strong {
+  color: var(--gray-800);
+}
+
+.page-departments .dept-card .d-stats {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.page-departments .dept-card .d-stat .n {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--deep);
+}
+
+.page-departments .dept-card .d-stat .l {
+  font-size: 11px;
+  color: var(--gray-400);
+}
+
+/* MODAL — the mockup styled the title/subtext/actions with inline styles;
+   ported to real classes since the React version uses className instead.
+   Only the overlay is shared (AdminShell.css) — the box itself is sized
+   for this page's simple single-select assign-head form. */
+.page-departments .modal-box {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 28px;
+  max-width: 420px;
+  width: 100%;
+}
+
+.page-departments .modal-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--deep);
+  margin-bottom: 4px;
+}
+
+.page-departments .modal-subtext {
+  font-size: 13px;
+  color: var(--gray-400);
+  margin-bottom: 18px;
+}
+
+.page-departments .modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .page-departments .dept-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .page-departments .content {
+    padding: 20px;
+  }
+  .page-departments .dept-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .page-departments .dept-card {
+    padding: 24px;
+  }
+  .page-departments .modal-box {
+    padding: 22px;
+  }
+}
+
+/* API LOADING / ERROR STATES — not present in the static mockup (it had no
+   real backend calls), needed here since this page fetches live data. */
+.page-departments .dept-loading {
+  color: var(--gray-400);
+  font-size: 0.9rem;
+}

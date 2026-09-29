@@ -1,0 +1,103 @@
+@import './VolunteerShell.css';
+
+/* Converted from 06-opportunity-detail.html. Everything below is specific
+   to this page and scoped under .page-opportunity-detail — see
+   VolunteerShell.css's header comment for why that scoping exists. */
+
+.page-opportunity-detail .main{padding-bottom:90px;}
+
+/* BREADCRUMB (this page's topbar is just the breadcrumb, no search/sort) */
+.page-opportunity-detail .breadcrumb{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-400);}
+.page-opportunity-detail .breadcrumb a{color:var(--forest);text-decoration:none;font-weight:600;cursor:pointer;}
+.page-opportunity-detail .breadcrumb a:hover{text-decoration:underline;}
+
+/* HERO */
+.page-opportunity-detail .hero{background:linear-gradient(135deg,var(--deep) 0%,#0f2d28 100%);padding:36px 40px;color:var(--white);position:relative;overflow:hidden;}
+.page-opportunity-detail .hero::before{content:'🌳';position:absolute;right:48px;top:50%;transform:translateY(-50%);font-size:100px;opacity:.12;}
+.page-opportunity-detail .hero-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(154,209,75,.2);border:1px solid rgba(154,209,75,.4);color:var(--lime);font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:14px;text-transform:uppercase;letter-spacing:.06em;}
+.page-opportunity-detail .hero h1{font-size:28px;font-weight:800;margin-bottom:10px;line-height:1.2;}
+.page-opportunity-detail .hero-meta{display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+.page-opportunity-detail .hero-meta-item{display:flex;align-items:center;gap:6px;font-size:13px;opacity:.75;}
+.page-opportunity-detail .hero-meta-item strong{opacity:1;font-weight:600;}
+
+/* CAPACITY REACHED */
+.page-opportunity-detail .capacity-banner{margin:0 40px;padding:12px 18px;background:rgba(220,38,38,.08);border:1.5px solid rgba(220,38,38,.25);color:#b91c1c;border-radius:14px;font-size:13px;font-weight:600;}
+
+/* CONTENT AREA */
+.page-opportunity-detail .content-wrap{display:flex;gap:28px;padding:28px 40px;flex-wrap:wrap;}
+.page-opportunity-detail .detail-left{flex:2;min-width:320px;}
+.page-opportunity-detail .detail-right{width:280px;flex-shrink:0;}
+
+.page-opportunity-detail .info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:28px;}
+.page-opportunity-detail .info-tile{background:var(--white);border:1.5px solid var(--gray-200);border-radius:16px;padding:16px;text-align:center;}
+.page-opportunity-detail .info-tile .tile-icon{font-size:24px;margin-bottom:6px;}
+.page-opportunity-detail .info-tile .tile-label{font-size:11px;color:var(--gray-400);font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;}
+.page-opportunity-detail .info-tile .tile-value{font-size:15px;font-weight:800;color:var(--deep);}
+
+.page-opportunity-detail .detail-section{background:var(--white);border:1.5px solid var(--gray-200);border-radius:18px;padding:24px;margin-bottom:16px;}
+.page-opportunity-detail .detail-section h3{font-size:16px;font-weight:700;color:var(--deep);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.page-opportunity-detail .detail-section ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.page-opportunity-detail .detail-section ul li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--gray-600);line-height:1.5;}
+.page-opportunity-detail .detail-section ul li::before{content:'✅';font-size:14px;flex-shrink:0;margin-top:1px;}
+.page-opportunity-detail .detail-section p{font-size:14px;color:var(--gray-600);line-height:1.7;}
+
+/* RIGHT COL */
+.page-opportunity-detail .match-ring-card{background:var(--white);border:1.5px solid var(--gray-200);border-radius:18px;padding:24px;margin-bottom:16px;text-align:center;}
+.page-opportunity-detail .match-ring-card h4{font-size:14px;font-weight:700;color:var(--deep);margin-bottom:16px;}
+.page-opportunity-detail .ring-wrap{position:relative;width:120px;height:120px;margin:0 auto 12px;}
+.page-opportunity-detail .ring-svg{transform:rotate(-90deg);}
+.page-opportunity-detail .ring-bg{fill:none;stroke:var(--gray-100);stroke-width:10;}
+.page-opportunity-detail .ring-fill{fill:none;stroke:var(--lime);stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset 1s ease;}
+.page-opportunity-detail .ring-num{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:24px;font-weight:800;color:var(--forest);}
+.page-opportunity-detail .ring-label{font-size:12px;color:var(--gray-400);}
+.page-opportunity-detail .evergreen-open{font-size:40px;margin-bottom:8px;}
+.page-opportunity-detail .match-reasons{text-align:left;margin-top:14px;}
+.page-opportunity-detail .match-reason-item{display:flex;align-items:center;gap:8px;padding:6px 0;font-size:12px;color:var(--gray-800);border-bottom:1px solid var(--gray-100);}
+.page-opportunity-detail .match-reason-item:last-child{border-bottom:none;}
+.page-opportunity-detail .match-reason-item .dot{width:8px;height:8px;border-radius:50%;background:var(--lime);flex-shrink:0;}
+
+.page-opportunity-detail .skills-card{background:var(--white);border:1.5px solid var(--gray-200);border-radius:18px;padding:20px;margin-bottom:16px;}
+.page-opportunity-detail .skills-card h4{font-size:14px;font-weight:700;color:var(--deep);margin-bottom:12px;}
+.page-opportunity-detail .skill-tag{display:inline-block;padding:5px 12px;background:var(--sage);color:var(--deep);border-radius:20px;font-size:12px;font-weight:600;margin:3px;}
+
+/* RELATED DOCUMENTS (Track B) */
+.page-opportunity-detail .doc-links{display:flex;flex-direction:column;gap:8px;}
+.page-opportunity-detail .doc-link{display:block;padding:9px 12px;border:1.5px solid var(--gray-200);border-radius:10px;font-size:13px;font-weight:600;color:var(--forest);text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:all .15s;}
+.page-opportunity-detail .doc-link:hover{border-color:var(--forest);background:rgba(31,107,82,.04);}
+
+/* SIMILAR */
+.page-opportunity-detail .similar-section{padding:0 40px 32px;}
+.page-opportunity-detail .similar-section h3{font-size:18px;font-weight:800;color:var(--deep);margin-bottom:16px;}
+.page-opportunity-detail .similar-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;}
+.page-opportunity-detail .similar-card{background:var(--white);border:1.5px solid var(--gray-200);border-radius:16px;padding:16px;cursor:pointer;transition:all .2s;}
+.page-opportunity-detail .similar-card:hover{border-color:var(--forest);transform:translateY(-2px);}
+.page-opportunity-detail .similar-card h5{font-size:14px;font-weight:700;color:var(--gray-800);margin-bottom:4px;}
+.page-opportunity-detail .similar-card p{font-size:12px;color:var(--gray-400);margin-bottom:10px;}
+.page-opportunity-detail .similar-card .sc-footer{display:flex;align-items:center;justify-content:space-between;}
+.page-opportunity-detail .similar-card .sc-match{font-size:12px;font-weight:700;color:var(--forest);background:rgba(154,209,75,.15);padding:3px 8px;border-radius:10px;}
+.page-opportunity-detail .similar-card .sc-full{font-size:11px;font-weight:700;color:#b91c1c;background:rgba(220,38,38,.1);padding:3px 8px;border-radius:10px;text-transform:uppercase;letter-spacing:.04em;}
+
+/* STICKY BOTTOM CTA */
+.page-opportunity-detail .sticky-cta{position:fixed;bottom:0;left:240px;right:0;background:var(--white);border-top:1px solid var(--gray-200);padding:16px 40px;display:flex;align-items:center;justify-content:space-between;z-index:100;box-shadow:0 -4px 20px rgba(0,0,0,.08);flex-wrap:wrap;gap:12px;}
+.page-opportunity-detail .cta-info h4{font-size:15px;font-weight:700;color:var(--deep);}
+.page-opportunity-detail .cta-info p{font-size:13px;color:var(--gray-400);}
+.page-opportunity-detail .cta-btns{display:flex;gap:12px;align-items:center;}
+.page-opportunity-detail .btn-secondary{padding:12px 22px;border:1.5px solid var(--gray-200);border-radius:14px;font-family:inherit;font-size:14px;font-weight:600;color:var(--gray-800);background:var(--white);cursor:pointer;transition:all .2s;}
+.page-opportunity-detail .btn-secondary:hover:not(:disabled){border-color:var(--forest);color:var(--forest);}
+.page-opportunity-detail .btn-secondary:disabled{opacity:.5;cursor:not-allowed;}
+.page-opportunity-detail .btn-primary-a{padding:13px 28px;background:var(--forest);color:var(--white);border:none;border-radius:14px;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;transition:all .3s;box-shadow:0 4px 16px rgba(31,107,82,.3);}
+.page-opportunity-detail .btn-primary-b{padding:13px 28px;background:linear-gradient(135deg,#1e5fa3,#0f3460);color:var(--white);border:none;border-radius:14px;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;transition:all .3s;box-shadow:0 4px 16px rgba(30,95,163,.3);}
+.page-opportunity-detail .btn-primary-a:disabled,
+.page-opportunity-detail .btn-primary-b:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+
+@media (max-width: 900px) {
+  .page-opportunity-detail .sticky-cta{left:0;}
+}
+
+@media (max-width: 640px) {
+  .page-opportunity-detail .hero{padding:24px 20px;}
+  .page-opportunity-detail .capacity-banner{margin:0 20px;}
+  .page-opportunity-detail .content-wrap{padding:20px;}
+  .page-opportunity-detail .info-grid{grid-template-columns:repeat(2,1fr);}
+  .page-opportunity-detail .similar-section{padding:0 20px 24px;}
+}

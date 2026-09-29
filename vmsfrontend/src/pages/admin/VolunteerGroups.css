@@ -1,0 +1,219 @@
+@import './AdminShell.css';
+
+/* Everything below is specific to the Volunteer Groups page and scoped
+   under .page-volunteer-groups so it can never collide with another page's
+   CSS — even if another page reuses one of these class names later. */
+
+/* STAT CARDS — same 3-up layout the mockup used inline, moved into CSS. */
+.page-volunteer-groups .groups-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.page-volunteer-groups .groups-stat-card h3 {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--deep);
+  margin-bottom: 6px;
+}
+
+.page-volunteer-groups .groups-stat-num {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--deep);
+}
+
+.page-volunteer-groups .skel-stat {
+  height: 78px;
+  border-radius: 20px;
+}
+
+/* FILTER BAR */
+.page-volunteer-groups .filter-bar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.page-volunteer-groups .search-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 220px;
+}
+
+.page-volunteer-groups .search-wrap input {
+  width: 100%;
+  padding: 10px 14px 10px 38px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 13.5px;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.page-volunteer-groups .search-wrap input:focus {
+  border-color: var(--forest);
+  box-shadow: 0 0 0 3px rgba(31, 107, 82, 0.08);
+}
+
+.page-volunteer-groups .search-wrap .s-icon {
+  position: absolute;
+  left: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gray-400);
+  font-size: 14px;
+}
+
+/* TREE */
+.page-volunteer-groups .tree {
+  font-size: 13.5px;
+}
+
+.page-volunteer-groups .tree-country {
+  margin-bottom: 10px;
+}
+
+.page-volunteer-groups .tree-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.page-volunteer-groups .tree-row:hover {
+  background: var(--gray-50);
+}
+
+.page-volunteer-groups .tree-row .caret {
+  width: 14px;
+  color: var(--gray-400);
+  font-size: 11px;
+  transition: transform 0.15s;
+}
+
+.page-volunteer-groups .tree-row.open .caret {
+  transform: rotate(90deg);
+}
+
+.page-volunteer-groups .tree-row .t-label {
+  font-weight: 700;
+  color: var(--gray-800);
+  flex: 1;
+}
+
+.page-volunteer-groups .tree-row .t-count {
+  font-size: 11.5px;
+  color: var(--gray-400);
+  background: var(--gray-100);
+  padding: 2px 8px;
+  border-radius: 8px;
+}
+
+.page-volunteer-groups .tree-children {
+  display: none;
+  margin-left: 22px;
+  border-left: 1.5px dashed var(--gray-200);
+  padding-left: 6px;
+}
+
+.page-volunteer-groups .tree-children.open {
+  display: block;
+}
+
+.page-volunteer-groups .tree-city {
+  font-weight: 500;
+  color: var(--gray-600);
+}
+
+/* ZERO STATE — same look as Volunteers.jsx's, reused here for "no
+   volunteers registered yet" rather than "no filter matches", since this
+   page has no filters that can produce an empty result on their own. */
+.page-volunteer-groups .zero-state {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 56px 20px;
+}
+
+.page-volunteer-groups .zero-state.show {
+  display: flex;
+}
+
+.page-volunteer-groups .zs-icon {
+  width: 88px;
+  height: 88px;
+  background: #f0f7f4;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.page-volunteer-groups .zero-state h3 {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--deep);
+  margin-bottom: 8px;
+}
+
+.page-volunteer-groups .zero-state p {
+  font-size: 13.5px;
+  color: var(--gray-400);
+  max-width: 360px;
+  line-height: 1.6;
+}
+
+/* LOADING SKELETON */
+.page-volunteer-groups .skeleton {
+  background: linear-gradient(90deg, var(--gray-100) 25%, var(--gray-200) 37%, var(--gray-100) 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+  border-radius: 8px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+.page-volunteer-groups .loading-state {
+  padding-top: 4px;
+}
+
+.page-volunteer-groups .skel-row {
+  height: 52px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .page-volunteer-groups .groups-stat-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-volunteer-groups .content {
+    padding: 16px;
+  }
+  .page-volunteer-groups .section-card {
+    padding: 18px;
+  }
+}

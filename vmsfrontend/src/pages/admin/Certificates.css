@@ -1,0 +1,78 @@
+@import './AdminShell.css';
+
+/* Converted from admin-10-certificates.html. Page-specific styles scoped
+   under .page-certificates — shared chrome (sidebar/topbar/section-card/
+   btn-primary/btn-ghost/modal-overlay) comes from AdminShell.css. The
+   filter-bar/table/pagination/zero-state/skeleton block below is the same
+   pattern every other admin table page (Applications.css, Volunteers.css)
+   already re-declares per page, for the reason AdminShell.css's own header
+   comment gives: it never actually hosted these. */
+
+.page-certificates .filter-bar { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 18px; }
+.page-certificates .search-wrap { position: relative; flex: 1; min-width: 220px; }
+.page-certificates .search-wrap input { width: 100%; padding: 10px 14px 10px 38px; border: 1.5px solid var(--gray-200); border-radius: 10px; font-family: inherit; font-size: 13.5px; outline: none; transition: all 0.2s; }
+.page-certificates .search-wrap input:focus { border-color: var(--forest); box-shadow: 0 0 0 3px rgba(31, 107, 82, 0.08); }
+.page-certificates .search-wrap .s-icon { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--gray-400); font-size: 14px; }
+.page-certificates .filter-select { padding: 10px 14px; border: 1.5px solid var(--gray-200); border-radius: 10px; font-family: inherit; font-size: 13px; color: var(--gray-800); background: var(--white); outline: none; cursor: pointer; }
+.page-certificates .filter-select:focus { border-color: var(--forest); }
+.page-certificates .filter-note { font-size: 12.5px; color: var(--gray-400); padding: 4px 4px 14px; }
+
+.page-certificates .table-wrap { overflow-x: auto; }
+.page-certificates table { width: 100%; border-collapse: collapse; }
+.page-certificates thead th { text-align: left; font-size: 11.5px; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.04em; padding: 10px 14px; border-bottom: 1.5px solid var(--gray-200); white-space: nowrap; }
+.page-certificates tbody td { padding: 14px; border-bottom: 1px solid var(--gray-100); font-size: 13.5px; color: var(--gray-800); vertical-align: middle; }
+.page-certificates tbody tr:last-child td { border-bottom: none; }
+.page-certificates tbody tr:hover { background: var(--gray-50); }
+
+.page-certificates .track-chip { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 8px; white-space: nowrap; }
+.page-certificates .track-chip.track-a { background: #e8f5ee; color: var(--forest); }
+.page-certificates .track-chip.track-b { background: #eff6ff; color: #1d4ed8; }
+
+.page-certificates .pagination { display: flex; align-items: center; justify-content: space-between; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--gray-100); flex-wrap: wrap; gap: 12px; }
+.page-certificates .pagination .p-info { font-size: 12.5px; color: var(--gray-400); }
+.page-certificates .pagination .p-controls { display: flex; gap: 6px; }
+.page-certificates .p-btn { width: 32px; height: 32px; border-radius: 8px; border: 1.5px solid var(--gray-200); background: var(--white); font-family: inherit; font-size: 13px; font-weight: 600; color: var(--gray-600); cursor: pointer; }
+.page-certificates .p-btn.active { background: var(--forest); border-color: var(--forest); color: var(--white); cursor: default; }
+.page-certificates .p-btn:disabled { color: var(--gray-400); cursor: not-allowed; }
+
+.page-certificates .zero-state { display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 56px 20px; }
+.page-certificates .zero-state.show { display: flex; }
+.page-certificates .zs-icon { width: 88px; height: 88px; background: #f0f7f4; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; margin-bottom: 20px; }
+.page-certificates .zero-state h3 { font-size: 17px; font-weight: 800; color: var(--deep); margin-bottom: 8px; }
+.page-certificates .zero-state p { font-size: 13.5px; color: var(--gray-400); max-width: 360px; line-height: 1.6; margin-bottom: 20px; }
+.page-certificates .zs-btns { display: flex; gap: 12px; }
+
+.page-certificates .skeleton { background: linear-gradient(90deg, var(--gray-100) 25%, var(--gray-200) 37%, var(--gray-100) 63%); background-size: 400% 100%; animation: certShimmer 1.4s ease infinite; border-radius: 8px; }
+@keyframes certShimmer { 0% { background-position: 100% 50%; } 100% { background-position: 0 50%; } }
+.page-certificates .loading-state { padding-top: 4px; }
+.page-certificates .skel-row { height: 52px; margin-bottom: 8px; border-radius: 10px; }
+
+/* VIEW MODAL — converted from the mockup's .modal-box/.cert-card/.cert-inner.
+   .modal-overlay (backdrop) is shared via AdminShell.css; the box + card
+   visuals are specific to this page. */
+.page-certificates .modal-box { background: var(--white); border-radius: 20px; padding: 28px; max-width: 420px; width: 100%; text-align: center; }
+.page-certificates .cert-card { background: linear-gradient(135deg, #fffdf7, #fff8e1); border: 2px solid var(--gold); border-radius: 16px; padding: 22px; position: relative; overflow: hidden; }
+.page-certificates .cert-inner { background: var(--white); border-radius: 14px; padding: 20px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); }
+.page-certificates .cert-header { display: flex; align-items: center; gap: 10px; justify-content: center; margin-bottom: 10px; }
+.page-certificates .cert-logo { width: 32px; height: 32px; background: var(--forest); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+.page-certificates .cert-org { font-size: 12px; font-weight: 700; color: var(--forest); }
+.page-certificates .cert-inner h3 { font-size: 18px; font-weight: 800; color: var(--deep); margin-bottom: 4px; }
+.page-certificates .cert-inner .cert-name { font-size: 14px; color: var(--gray-600); margin-bottom: 8px; }
+.page-certificates .cert-inner .cert-date { font-size: 12px; color: var(--gray-400); }
+.page-certificates .cert-badge { display: inline-block; background: var(--sage); color: var(--forest); font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 10px; margin-top: 8px; }
+.page-certificates .cert-id { font-size: 11.5px; color: var(--gray-400); margin-top: 14px; }
+.page-certificates .modal-actions { display: flex; flex-direction: column; }
+
+@media (max-width: 900px) {
+  .page-certificates table, .page-certificates thead, .page-certificates tbody,
+  .page-certificates tr, .page-certificates th, .page-certificates td { display: block; }
+  .page-certificates thead { display: none; }
+  .page-certificates tbody tr { border: 1.5px solid var(--gray-200); border-radius: 14px; margin-bottom: 12px; padding: 12px; }
+  .page-certificates tbody td { border-bottom: none; padding: 6px 0; display: flex; justify-content: space-between; align-items: center; }
+  .page-certificates tbody td[data-label]::before { content: attr(data-label); font-weight: 600; color: var(--gray-400); margin-right: 12px; }
+}
+
+@media (max-width: 640px) {
+  .page-certificates .content { padding: 16px; }
+  .page-certificates .section-card { padding: 18px; }
+}

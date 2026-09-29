@@ -1,0 +1,57 @@
+@import './AdminShell.css';
+
+/* Converted from admin-09-task-board.html. Scoped under .page-task-board,
+   same convention as every other admin page here. .btn-primary/.btn-ghost/
+   .btn-ghost.warn/.field-group/.field-label/.field-input/.modal-overlay are
+   already shared via AdminShell.css — only what's new to this page (the
+   filter bar, the kanban board itself, and the task/assign modals) is
+   declared here. */
+
+.page-task-board .filter-bar { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 18px; }
+.page-task-board .search-wrap { position: relative; flex: 1; min-width: 220px; }
+.page-task-board .search-wrap input { width: 100%; padding: 10px 14px 10px 38px; border: 1.5px solid var(--gray-200); border-radius: 10px; font-family: inherit; font-size: 13.5px; outline: none; transition: all .2s; }
+.page-task-board .search-wrap input:focus { border-color: var(--forest); box-shadow: 0 0 0 3px rgba(31,107,82,.08); }
+.page-task-board .search-wrap .s-icon { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--gray-400); font-size: 14px; }
+.page-task-board .filter-select { padding: 10px 14px; border: 1.5px solid var(--gray-200); border-radius: 10px; font-family: inherit; font-size: 13px; color: var(--gray-800); background: var(--white); outline: none; cursor: pointer; }
+.page-task-board .filter-select:focus { border-color: var(--forest); }
+
+.page-task-board .skeleton { background: linear-gradient(90deg, var(--gray-100) 25%, var(--gray-200) 37%, var(--gray-100) 63%); background-size: 400% 100%; animation: taskBoardShimmer 1.4s ease infinite; border-radius: 8px; }
+@keyframes taskBoardShimmer { 0% { background-position: 100% 50%; } 100% { background-position: 0 50%; } }
+.page-task-board .loading-state { padding-top: 4px; }
+.page-task-board .skel-row { height: 52px; margin-bottom: 8px; border-radius: 10px; }
+
+.page-task-board .board { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 8px; }
+.page-task-board .board-col { flex: 0 0 260px; background: var(--gray-50); border-radius: 16px; padding: 14px; min-height: 400px; }
+.page-task-board .board-col h4 { font-size: 12.5px; font-weight: 800; color: var(--gray-600); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
+.page-task-board .board-col h4 .count { background: var(--gray-200); color: var(--gray-600); font-size: 11px; padding: 1px 8px; border-radius: 10px; }
+.page-task-board .board-col.dragover { background: var(--sage); }
+.page-task-board .task-card { background: var(--white); border: 1.5px solid var(--gray-200); border-radius: 12px; padding: 12px; margin-bottom: 10px; cursor: grab; transition: all .15s; }
+.page-task-board .task-card:hover { border-color: var(--forest); box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+.page-task-board .task-card h5 { font-size: 13px; font-weight: 700; color: var(--gray-800); margin-bottom: 6px; line-height: 1.4; }
+.page-task-board .task-card .t-meta { font-size: 11.5px; color: var(--gray-400); margin-bottom: 3px; }
+.page-task-board .task-card .t-dept { display: inline-block; margin-top: 6px; }
+.page-task-board .dept-chip { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 8px; background: var(--sage); color: var(--forest); }
+.page-task-board .empty-state { text-align: center; padding: 24px; color: var(--gray-400); }
+.page-task-board .empty-state p { font-size: 13px; }
+
+.page-task-board .modal-box { background: var(--white); border-radius: 20px; padding: 28px; max-width: 520px; width: 100%; max-height: 88vh; overflow-y: auto; }
+.page-task-board .modal-box h2 { font-size: 18px; font-weight: 800; color: var(--deep); margin-bottom: 4px; }
+.page-task-board .modal-box .m-sub { font-size: 13px; color: var(--gray-400); margin-bottom: 18px; }
+.page-task-board .comment-item { background: var(--gray-50); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; font-size: 13px; color: var(--gray-800); }
+.page-task-board .comment-item .c-meta { font-size: 11px; color: var(--gray-400); margin-top: 4px; }
+.page-task-board .modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--gray-100); flex-wrap: wrap; }
+.page-task-board .field-optional { color: var(--gray-400); font-size: 11.5px; font-weight: 400; margin-left: 4px; }
+.page-task-board .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 640px) { .page-task-board .field-row { grid-template-columns: 1fr; } }
+
+.page-task-board .modal-card { background: var(--white); border-radius: 20px; padding: 28px; max-width: 420px; width: 90%; box-shadow: 0 20px 60px rgba(0,0,0,.2); }
+.page-task-board .modal-card h3 { font-size: 18px; font-weight: 800; color: var(--deep); margin-bottom: 10px; }
+.page-task-board .modal-card p { font-size: 14px; color: var(--gray-600); line-height: 1.6; margin-bottom: 16px; }
+.page-task-board .modal-btns { display: flex; gap: 10px; margin-top: 8px; }
+.page-task-board .modal-btns .btn-cancel { flex: 1; padding: 11px; border: 1.5px solid var(--gray-200); border-radius: 12px; font-family: inherit; font-size: 14px; font-weight: 600; background: var(--white); color: var(--gray-600); cursor: pointer; }
+.page-task-board .modal-btns .btn-confirm { flex: 1; padding: 11px; border: none; border-radius: 12px; font-family: inherit; font-size: 14px; font-weight: 700; background: var(--forest); color: var(--white); cursor: pointer; }
+.page-task-board .modal-btns .btn-confirm:disabled, .page-task-board .modal-btns .btn-cancel:disabled { opacity: .6; cursor: not-allowed; }
+
+@media (max-width: 900px) {
+  .page-task-board .content { padding: 16px; }
+}

@@ -1,0 +1,102 @@
+@import './AdminShell.css';
+
+/* Everything below is specific to the Volunteer Engagement page and scoped
+   under .page-volunteer-engagement so it can never collide with another
+   page's CSS — shared chrome (sidebar/topbar/section-card/empty-state)
+   comes from AdminShell.css. The engagement-specific rules (level hero,
+   levels path, metric grid, heatmap, skills/achievements) are adapted
+   directly from volunteer/MyEngagement.css, since this page renders the
+   same data, just for an admin/manager looking at someone else's numbers. */
+
+.page-volunteer-engagement .content {
+  padding: 24px 28px;
+  max-width: 1100px;
+}
+
+.page-volunteer-engagement .back-link {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--forest);
+  cursor: pointer;
+}
+
+.page-volunteer-engagement .back-link:hover {
+  text-decoration: underline;
+}
+
+/* LEVEL HERO */
+.page-volunteer-engagement .level-hero { background: linear-gradient(135deg, var(--forest), var(--deep)); border-radius: 24px; padding: 32px; color: var(--white); margin-bottom: 24px; position: relative; overflow: hidden; }
+.page-volunteer-engagement .level-hero::before { content: ''; position: absolute; top: -40px; right: -40px; width: 180px; height: 180px; border-radius: 50%; background: rgba(154, 209, 75, .12); }
+.page-volunteer-engagement .level-hero-inner { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+.page-volunteer-engagement .level-ring-wrap { flex-shrink: 0; }
+.page-volunteer-engagement .level-info { flex: 1; min-width: 220px; }
+.page-volunteer-engagement .level-info h2 { font-size: 22px; font-weight: 800; margin-bottom: 6px; }
+.page-volunteer-engagement .level-info .level-sub { font-size: 14px; opacity: .7; margin-bottom: 16px; }
+.page-volunteer-engagement .level-bar-wrap { max-width: 320px; }
+.page-volunteer-engagement .level-bar-label { display: flex; justify-content: space-between; font-size: 12px; opacity: .6; margin-bottom: 6px; }
+.page-volunteer-engagement .level-bar { height: 10px; background: rgba(255, 255, 255, .15); border-radius: 30px; overflow: hidden; }
+.page-volunteer-engagement .level-fill { height: 100%; background: linear-gradient(90deg, var(--lime), #6bab20); border-radius: 30px; transition: width 1s ease; }
+.page-volunteer-engagement .level-next { font-size: 12px; opacity: .6; margin-top: 6px; }
+
+/* LEVELS PATH */
+.page-volunteer-engagement .levels-path-card { background: var(--white); border-radius: 20px; padding: 20px; border: 1.5px solid var(--gray-200); margin-bottom: 24px; }
+.page-volunteer-engagement .levels-path-card h3 { font-size: 15px; font-weight: 800; color: var(--deep); margin-bottom: 16px; }
+.page-volunteer-engagement .levels-path { display: flex; gap: 0; align-items: center; margin-bottom: 4px; overflow-x: auto; padding: 4px 0; }
+.page-volunteer-engagement .level-node { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 84px; }
+.page-volunteer-engagement .level-node .l-icon { width: 48px; height: 48px; border-radius: 50%; border: 3px solid var(--gray-200); background: var(--white); display: flex; align-items: center; justify-content: center; font-size: 20px; transition: all .2s; }
+.page-volunteer-engagement .level-node .l-icon.done { border-color: var(--forest); background: var(--sage); }
+.page-volunteer-engagement .level-node .l-icon.current { border-color: var(--lime); background: linear-gradient(135deg, #e8f5ee, var(--sage)); box-shadow: 0 0 0 4px rgba(154, 209, 75, .2); }
+.page-volunteer-engagement .level-node .l-name { font-size: 10px; font-weight: 700; color: var(--gray-600); text-align: center; white-space: nowrap; }
+.page-volunteer-engagement .level-node .l-name.done { color: var(--forest); }
+.page-volunteer-engagement .level-node .l-name.current { color: var(--forest); font-weight: 800; }
+.page-volunteer-engagement .level-connector { flex: 1; height: 3px; background: var(--gray-200); min-width: 20px; }
+.page-volunteer-engagement .level-connector.done { background: var(--forest); }
+
+/* METRIC GRID */
+.page-volunteer-engagement .metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 24px; }
+.page-volunteer-engagement .metric-card { background: var(--white); border-radius: 18px; padding: 20px; border: 1.5px solid var(--gray-200); text-align: center; }
+.page-volunteer-engagement .metric-card .m-icon { font-size: 28px; margin-bottom: 10px; }
+.page-volunteer-engagement .metric-card .m-num { font-size: 32px; font-weight: 800; color: var(--deep); line-height: 1; }
+.page-volunteer-engagement .metric-card .m-label { font-size: 12px; color: var(--gray-400); margin-top: 4px; }
+
+/* HEATMAP */
+.page-volunteer-engagement .heatmap-card { background: var(--white); border-radius: 20px; padding: 24px; border: 1.5px solid var(--gray-200); margin-bottom: 24px; }
+.page-volunteer-engagement .heatmap-card h3 { font-size: 15px; font-weight: 800; color: var(--deep); margin-bottom: 16px; }
+.page-volunteer-engagement .heatmap-grid { display: grid; grid-template-columns: repeat(26, 1fr); gap: 3px; }
+.page-volunteer-engagement .hmap-cell { aspect-ratio: 1; border-radius: 3px; cursor: pointer; transition: transform .2s; }
+.page-volunteer-engagement .hmap-cell:hover { transform: scale(1.3); }
+.page-volunteer-engagement .hmap-legend { display: flex; align-items: center; gap: 6px; margin-top: 10px; font-size: 11px; color: var(--gray-400); }
+.page-volunteer-engagement .hmap-legend .l-cell { width: 12px; height: 12px; border-radius: 2px; }
+
+/* SKILLS + ACHIEVEMENTS */
+.page-volunteer-engagement .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+.page-volunteer-engagement .skill-bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.page-volunteer-engagement .skill-bar-row .s-label { font-size: 13px; color: var(--gray-600); width: 150px; flex-shrink: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.page-volunteer-engagement .skill-bar { flex: 1; height: 8px; background: var(--gray-100); border-radius: 20px; overflow: hidden; }
+.page-volunteer-engagement .skill-fill { height: 100%; border-radius: 20px; background: linear-gradient(90deg, var(--forest), var(--lime)); }
+.page-volunteer-engagement .skill-pct { font-size: 12px; font-weight: 700; color: var(--forest); width: 24px; text-align: right; }
+
+.page-volunteer-engagement .achievements-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.page-volunteer-engagement .ach-card { background: var(--white); border-radius: 16px; padding: 16px; border: 1.5px solid var(--gray-200); text-align: center; transition: all .2s; }
+.page-volunteer-engagement .ach-card:hover { border-color: var(--gold); box-shadow: 0 4px 16px rgba(216, 183, 92, .15); }
+.page-volunteer-engagement .ach-card.locked { opacity: .5; }
+.page-volunteer-engagement .ach-icon { font-size: 32px; margin-bottom: 8px; }
+.page-volunteer-engagement .ach-name { font-size: 12px; font-weight: 700; color: var(--deep); }
+.page-volunteer-engagement .ach-desc { font-size: 10px; color: var(--gray-400); margin-top: 3px; }
+.page-volunteer-engagement .ach-earned { font-size: 10px; color: var(--forest); font-weight: 600; margin-top: 4px; }
+.page-volunteer-engagement .ach-card.locked .ach-earned { color: var(--gray-400); }
+
+@media (max-width: 900px) {
+  .page-volunteer-engagement .metric-grid { grid-template-columns: 1fr 1fr; }
+  .page-volunteer-engagement .two-col { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .page-volunteer-engagement .content { padding: 16px; }
+  .page-volunteer-engagement .level-hero-inner { flex-direction: column; align-items: flex-start; }
+  .page-volunteer-engagement .achievements-grid { grid-template-columns: 1fr; }
+}

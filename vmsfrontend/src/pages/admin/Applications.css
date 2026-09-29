@@ -1,0 +1,105 @@
+@import './AdminShell.css';
+
+/* No mockup exists for this page — matches Volunteers.css's table pattern.
+   Scoped under .page-applications, same convention as every other admin
+   page here. The filter-bar/table/pagination/zero-state/skeleton block below
+   is copied from Volunteers.css rather than shared via AdminShell.css,
+   because it turns out AdminShell.css never actually hosted these — each
+   admin table page re-declares its own (same reason Volunteers.css gives:
+   avoiding cross-page collisions), so this page follows the same pattern
+   rather than introducing a new shared-vs-scoped inconsistency. */
+
+.page-applications .filter-bar { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 18px; }
+.page-applications .search-wrap { position: relative; flex: 1; min-width: 220px; }
+.page-applications .search-wrap input { width: 100%; padding: 10px 14px 10px 38px; border: 1.5px solid var(--gray-200); border-radius: 10px; font-family: inherit; font-size: 13.5px; outline: none; transition: all 0.2s; }
+.page-applications .search-wrap input:focus { border-color: var(--forest); box-shadow: 0 0 0 3px rgba(31, 107, 82, 0.08); }
+.page-applications .search-wrap .s-icon { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--gray-400); font-size: 14px; }
+.page-applications .filter-select { padding: 10px 14px; border: 1.5px solid var(--gray-200); border-radius: 10px; font-family: inherit; font-size: 13px; color: var(--gray-800); background: var(--white); outline: none; cursor: pointer; }
+.page-applications .filter-select:focus { border-color: var(--forest); }
+
+.page-applications .table-wrap { overflow-x: auto; }
+.page-applications table { width: 100%; border-collapse: collapse; }
+.page-applications thead th { text-align: left; font-size: 11.5px; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.04em; padding: 10px 14px; border-bottom: 1.5px solid var(--gray-200); white-space: nowrap; }
+.page-applications tbody td { padding: 14px; border-bottom: 1px solid var(--gray-100); font-size: 13.5px; color: var(--gray-800); vertical-align: middle; }
+.page-applications tbody tr:last-child td { border-bottom: none; }
+.page-applications tbody tr:hover { background: var(--gray-50); }
+
+.page-applications .pagination { display: flex; align-items: center; justify-content: space-between; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--gray-100); flex-wrap: wrap; gap: 12px; }
+.page-applications .pagination .p-info { font-size: 12.5px; color: var(--gray-400); }
+.page-applications .pagination .p-controls { display: flex; gap: 6px; }
+.page-applications .p-btn { width: 32px; height: 32px; border-radius: 8px; border: 1.5px solid var(--gray-200); background: var(--white); font-family: inherit; font-size: 13px; font-weight: 600; color: var(--gray-600); cursor: pointer; }
+.page-applications .p-btn.active { background: var(--forest); border-color: var(--forest); color: var(--white); cursor: default; }
+.page-applications .p-btn:disabled { color: var(--gray-400); cursor: not-allowed; }
+
+.page-applications .zero-state { display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 56px 20px; }
+.page-applications .zero-state.show { display: flex; }
+.page-applications .zs-icon { width: 88px; height: 88px; background: #f0f7f4; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; margin-bottom: 20px; }
+.page-applications .zero-state h3 { font-size: 17px; font-weight: 800; color: var(--deep); margin-bottom: 8px; }
+.page-applications .zero-state p { font-size: 13.5px; color: var(--gray-400); max-width: 360px; line-height: 1.6; margin-bottom: 20px; }
+.page-applications .zs-btns { display: flex; gap: 12px; }
+
+.page-applications .skeleton { background: linear-gradient(90deg, var(--gray-100) 25%, var(--gray-200) 37%, var(--gray-100) 63%); background-size: 400% 100%; animation: applicationsShimmer 1.4s ease infinite; border-radius: 8px; }
+@keyframes applicationsShimmer { 0% { background-position: 100% 50%; } 100% { background-position: 0 50%; } }
+.page-applications .loading-state { padding-top: 4px; }
+.page-applications .skel-row { height: 52px; margin-bottom: 8px; border-radius: 10px; }
+
+@media (max-width: 640px) {
+  .page-applications .content { padding: 16px; }
+  .page-applications .section-card { padding: 18px; }
+  .page-applications table, .page-applications thead, .page-applications tbody,
+  .page-applications tr, .page-applications th, .page-applications td { display: block; }
+  .page-applications thead { display: none; }
+  .page-applications tbody tr { border: 1.5px solid var(--gray-200); border-radius: 14px; margin-bottom: 12px; padding: 12px; }
+  .page-applications tbody td { border-bottom: none; padding: 6px 0; display: flex; justify-content: space-between; align-items: center; }
+  .page-applications tbody td[data-label]::before { content: attr(data-label); font-weight: 600; color: var(--gray-400); margin-right: 12px; }
+}
+
+.page-applications .modal-card {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 28px;
+  max-width: 420px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+.page-applications .modal-card h3 { font-size: 18px; font-weight: 800; color: var(--deep); margin-bottom: 10px; }
+.page-applications .modal-card p { font-size: 14px; color: var(--gray-600); line-height: 1.6; margin-bottom: 16px; }
+.page-applications .modal-btns { display: flex; gap: 10px; margin-top: 8px; }
+.page-applications .modal-btns .btn-cancel { flex: 1; padding: 11px; border: 1.5px solid var(--gray-200); border-radius: 12px; font-family: inherit; font-size: 14px; font-weight: 600; background: var(--white); color: var(--gray-600); cursor: pointer; }
+.page-applications .modal-btns .btn-confirm { flex: 1; padding: 11px; border: none; border-radius: 12px; font-family: inherit; font-size: 14px; font-weight: 700; background: var(--forest); color: var(--white); cursor: pointer; }
+.page-applications .modal-btns .btn-confirm:disabled,
+.page-applications .modal-btns .btn-cancel:disabled { opacity: .6; cursor: not-allowed; }
+
+.page-applications .status-pill { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 10px; white-space: nowrap; }
+.page-applications .status-pill.review { background: #fffbeb; color: #92400e; }
+.page-applications .status-pill.shortlist { background: #eff6ff; color: #1d4ed8; }
+.page-applications .status-pill.assigned { background: #f3e8ff; color: #7c3aed; }
+.page-applications .status-pill.complete { background: #e8f5ee; color: var(--forest); }
+.page-applications .status-pill.withdrawn { background: var(--gray-100); color: var(--gray-400); }
+.page-applications .status-pill.not-selected { background: #fef2f2; color: #dc2626; }
+.page-applications .status-pill.default { background: var(--gray-100); color: var(--gray-600); }
+
+.page-applications .btn-manage { padding: 7px 16px; background: var(--forest); color: var(--white); border: none; border-radius: 10px; font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer; transition: all .2s; }
+.page-applications .btn-manage:hover { background: var(--deep); }
+
+/* Converted from admin-05-applications.html — department/track chips, the
+   row-expand detail panel, and its match-breakdown pills. .btn-primary /
+   .btn-ghost / .btn-ghost.danger are already shared via AdminShell.css, so
+   only the classes new to this page are declared here. */
+
+.page-applications .filter-note { font-size: 12.5px; color: var(--gray-400); padding: 4px 4px 14px; }
+
+.page-applications .dept-chip { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 8px; background: var(--sage); color: var(--forest); white-space: nowrap; }
+
+.page-applications .track-chip { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 8px; white-space: nowrap; }
+.page-applications .track-chip.track-a { background: #e8f5ee; color: var(--forest); }
+.page-applications .track-chip.track-b { background: #eff6ff; color: #1d4ed8; }
+
+.page-applications .detail-panel { background: var(--gray-50); border-radius: 14px; padding: 18px; margin-top: 10px; border: 1.5px solid var(--gray-200); }
+.page-applications .detail-row { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 14px; }
+.page-applications .detail-col { flex: 1; min-width: 220px; }
+.page-applications .detail-col h5 { font-size: 11.5px; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 6px; }
+.page-applications .detail-col p { font-size: 13.5px; color: var(--gray-800); line-height: 1.6; }
+.page-applications .match-breakdown { display: flex; gap: 10px; flex-wrap: wrap; font-size: 12px; color: var(--gray-600); }
+.page-applications .match-pill { background: var(--white); border: 1px solid var(--gray-200); border-radius: 8px; padding: 4px 10px; }
+.page-applications .detail-actions { display: flex; gap: 10px; flex-wrap: wrap; padding-top: 12px; border-top: 1px solid var(--gray-200); }

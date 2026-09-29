@@ -1,0 +1,56 @@
+/* Converted from 07-track-a-claim.html. Standalone flow page — no sidebar,
+   so this doesn't import VolunteerShell.css; it defines its own :root the
+   same way the original mockup did. */
+:root {
+  --forest: #1F6B52; --deep: #16423C; --beige: #F5F1E8; --sage: #DDE8D5;
+  --lime: #9AD14B; --gold: #D8B75C; --sky: #8FD3FF;
+  --white: #ffffff; --gray-100: #f3f4f6; --gray-200: #e5e7eb;
+  --gray-400: #9ca3af; --gray-600: #4b5563; --gray-800: #1f2937;
+}
+
+.page-claim-a { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--beige); min-height: 100vh; display: flex; align-items: flex-start; justify-content: center; padding: 40px 20px 60px; }
+
+.page-claim-a .page-wrap { max-width: 680px; width: 100%; }
+.page-claim-a .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--forest); font-size: 14px; font-weight: 600; text-decoration: none; margin-bottom: 24px; cursor: pointer; }
+.page-claim-a .back-link:hover { text-decoration: underline; }
+
+.page-claim-a .info-banner { background: linear-gradient(135deg, var(--forest), var(--deep)); border-radius: 18px; padding: 24px 28px; color: var(--white); margin-bottom: 24px; display: flex; gap: 18px; align-items: flex-start; }
+.page-claim-a .info-banner .b-icon { font-size: 36px; flex-shrink: 0; }
+.page-claim-a .info-banner h3 { font-size: 18px; font-weight: 800; margin-bottom: 6px; }
+.page-claim-a .info-banner p { font-size: 14px; opacity: .8; line-height: 1.6; }
+.page-claim-a .instant-chips { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.page-claim-a .instant-chip { background: rgba(154,209,75,.2); border: 1px solid rgba(154,209,75,.4); color: var(--lime); font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 20px; }
+
+.page-claim-a .form-card { background: var(--white); border-radius: 20px; padding: 32px; border: 1.5px solid var(--gray-200); margin-bottom: 20px; box-shadow: 0 2px 16px rgba(0,0,0,.05); }
+.page-claim-a .form-card h2 { font-size: 20px; font-weight: 800; color: var(--deep); margin-bottom: 6px; }
+.page-claim-a .form-card .subtitle { font-size: 14px; color: var(--gray-600); margin-bottom: 24px; }
+
+.page-claim-a .field-group { margin-bottom: 18px; }
+.page-claim-a label { font-size: 13px; font-weight: 600; color: var(--gray-800); display: block; margin-bottom: 6px; }
+.page-claim-a label .opt { color: var(--gray-400); font-weight: 400; }
+.page-claim-a input[type="text"], .page-claim-a input[type="date"] { width: 100%; padding: 11px 14px; border: 1.5px solid var(--gray-200); border-radius: 12px; font-family: inherit; font-size: 14px; color: var(--gray-800); outline: none; transition: all .2s; }
+.page-claim-a input:focus { border-color: var(--forest); box-shadow: 0 0 0 3px rgba(31,107,82,.1); }
+.page-claim-a .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.page-claim-a .form-error { color: #dc2626; font-size: 13px; margin-bottom: 12px; text-align: center; }
+
+.page-claim-a .confirm-section { text-align: center; }
+.page-claim-a .btn-confirm { padding: 16px 40px; background: var(--forest); color: var(--white); border: none; border-radius: 16px; font-family: inherit; font-size: 17px; font-weight: 800; cursor: pointer; transition: all .3s; box-shadow: 0 6px 24px rgba(31,107,82,.35); display: inline-flex; align-items: center; gap: 10px; width: 100%; justify-content: center; }
+.page-claim-a .btn-confirm:hover:not(:disabled) { background: var(--deep); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(31,107,82,.45); }
+.page-claim-a .btn-confirm:disabled { opacity: .7; cursor: not-allowed; }
+.page-claim-a .confirm-hint { font-size: 12px; color: var(--gray-400); margin-top: 10px; }
+
+.page-claim-a .success-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,.5); z-index: 1000; display: flex; align-items: center; justify-content: center; }
+.page-claim-a .success-card { background: var(--white); border-radius: 24px; padding: 40px; max-width: 440px; width: 90%; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,.2); animation: claimPopIn .4s cubic-bezier(.68,-.55,.265,1.55); }
+@keyframes claimPopIn { from { transform: scale(.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.page-claim-a .success-icon { width: 80px; height: 80px; background: linear-gradient(135deg, var(--lime), #6bab20); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; margin: 0 auto 20px; }
+.page-claim-a .success-card h2 { font-size: 24px; font-weight: 800; color: var(--deep); margin-bottom: 8px; }
+.page-claim-a .success-card p { font-size: 14px; color: var(--gray-600); line-height: 1.6; margin-bottom: 20px; }
+.page-claim-a .success-chips { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.page-claim-a .s-chip { padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; }
+.page-claim-a .s-chip.green { background: #E8F5EE; color: var(--forest); }
+.page-claim-a .s-chip.gold { background: #FFFBEB; color: #92400e; }
+
+@media (max-width: 640px) {
+  .page-claim-a .form-grid-2 { grid-template-columns: 1fr; }
+}

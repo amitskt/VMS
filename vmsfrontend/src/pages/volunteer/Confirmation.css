@@ -1,0 +1,66 @@
+/* Converted from 09-confirmation.html. Standalone flow page — no sidebar,
+   own :root, same reasoning as ClaimTrackA.css / ApplyTrackB.css. The
+   mockup's "Share on LinkedIn" button is dropped — it had no real sharing
+   behavior behind it in the mockup either, just a styled dead button. */
+:root {
+  --forest: #1F6B52; --deep: #16423C; --beige: #F5F1E8; --sage: #DDE8D5;
+  --lime: #9AD14B; --gold: #D8B75C; --sky: #8FD3FF;
+  --white: #ffffff; --gray-100: #f3f4f6; --gray-200: #e5e7eb;
+  --gray-400: #9ca3af; --gray-600: #4b5563; --gray-800: #1f2937;
+}
+
+.page-confirmation { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--beige); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 40px 20px; overflow-x: hidden; }
+
+.page-confirmation #confetti { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+.page-confirmation .page-wrap { max-width: 700px; width: 100%; position: relative; z-index: 1; }
+
+.page-confirmation .hero-card { background: linear-gradient(135deg, var(--forest) 0%, var(--deep) 60%, #0d2f27 100%); border-radius: 28px; padding: 56px 40px 48px; text-align: center; color: var(--white); margin-bottom: 20px; position: relative; overflow: hidden; }
+.page-confirmation .hero-card::before { content: ''; position: absolute; top: -60px; right: -60px; width: 200px; height: 200px; border-radius: 50%; background: rgba(154,209,75,.12); }
+.page-confirmation .hero-card::after { content: ''; position: absolute; bottom: -40px; left: -40px; width: 160px; height: 160px; border-radius: 50%; background: rgba(143,211,255,.08); }
+.page-confirmation .success-ring { width: 100px; height: 100px; border-radius: 50%; background: rgba(154,209,75,.15); border: 3px solid rgba(154,209,75,.3); display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; }
+.page-confirmation .success-icon { font-size: 44px; }
+.page-confirmation .track-pill { display: inline-block; background: rgba(154,209,75,.2); border: 1px solid rgba(154,209,75,.4); color: var(--lime); font-size: 12px; font-weight: 700; padding: 5px 14px; border-radius: 30px; letter-spacing: .05em; margin-bottom: 18px; }
+.page-confirmation .hero-card h1 { font-size: 32px; font-weight: 800; margin-bottom: 10px; }
+.page-confirmation .hero-card p.sub { font-size: 15px; opacity: .75; line-height: 1.7; max-width: 480px; margin: 0 auto; }
+.page-confirmation .ref-row { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 20px; }
+.page-confirmation .ref-label { font-size: 12px; opacity: .5; }
+.page-confirmation .ref-code { font-size: 13px; font-weight: 700; letter-spacing: .1em; background: rgba(255,255,255,.1); padding: 4px 12px; border-radius: 8px; }
+
+.page-confirmation .impact-strip { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 20px; }
+.page-confirmation .impact-tile { background: var(--white); border-radius: 16px; padding: 18px; text-align: center; border: 1.5px solid var(--gray-200); }
+.page-confirmation .impact-tile .i-icon { font-size: 24px; margin-bottom: 8px; }
+.page-confirmation .impact-tile .i-num { font-size: 22px; font-weight: 800; color: var(--deep); }
+.page-confirmation .impact-tile .i-label { font-size: 11px; color: var(--gray-400); font-weight: 500; margin-top: 2px; }
+
+.page-confirmation .steps-card { background: var(--white); border-radius: 20px; padding: 28px 32px; border: 1.5px solid var(--gray-200); margin-bottom: 20px; box-shadow: 0 2px 16px rgba(0,0,0,.05); }
+.page-confirmation .steps-card h2 { font-size: 18px; font-weight: 800; color: var(--deep); margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+.page-confirmation .step-list { display: flex; flex-direction: column; gap: 0; }
+.page-confirmation .step-item { display: flex; gap: 16px; padding: 16px 0; position: relative; }
+.page-confirmation .step-item:not(:last-child)::after { content: ''; position: absolute; left: 19px; top: 52px; bottom: 0; width: 2px; background: var(--gray-200); }
+.page-confirmation .step-num { width: 38px; height: 38px; border-radius: 50%; background: var(--sage); display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; color: var(--forest); flex-shrink: 0; }
+.page-confirmation .step-item.completed .step-num { background: var(--forest); color: var(--white); }
+.page-confirmation .step-body h4 { font-size: 15px; font-weight: 700; color: var(--gray-800); margin-bottom: 4px; }
+.page-confirmation .step-body p { font-size: 13px; color: var(--gray-600); line-height: 1.6; }
+.page-confirmation .step-body .step-chip { display: inline-block; margin-top: 6px; background: var(--gray-100); color: var(--gray-600); font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 10px; }
+.page-confirmation .step-body .step-chip.done { background: #E8F5EE; color: var(--forest); }
+
+.page-confirmation .quick-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+.page-confirmation .quick-card { background: var(--white); border-radius: 16px; padding: 18px; border: 1.5px solid var(--gray-200); cursor: pointer; transition: all .2s; text-align: center; }
+.page-confirmation .quick-card:hover { border-color: var(--forest); background: rgba(31,107,82,.02); }
+.page-confirmation .quick-card .q-icon { font-size: 24px; margin-bottom: 8px; }
+.page-confirmation .quick-card h4 { font-size: 14px; font-weight: 700; color: var(--deep); margin-bottom: 4px; }
+.page-confirmation .quick-card p { font-size: 12px; color: var(--gray-400); }
+
+.page-confirmation .cta-stack { display: flex; flex-direction: column; gap: 10px; }
+.page-confirmation .btn-primary { padding: 16px 28px; background: var(--forest); color: var(--white); border: none; border-radius: 16px; font-family: inherit; font-size: 16px; font-weight: 800; cursor: pointer; width: 100%; transition: all .25s; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 6px 24px rgba(31,107,82,.3); }
+.page-confirmation .btn-primary:hover { background: var(--deep); transform: translateY(-2px); }
+.page-confirmation .btn-secondary { padding: 14px 28px; background: var(--white); color: var(--deep); border: 1.5px solid var(--gray-200); border-radius: 16px; font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer; width: 100%; transition: all .2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.page-confirmation .btn-secondary:hover { border-color: var(--forest); color: var(--forest); }
+
+@media (max-width: 640px) {
+  .page-confirmation .hero-card { padding: 36px 24px 32px; }
+  .page-confirmation .hero-card h1 { font-size: 24px; }
+  .page-confirmation .impact-strip { grid-template-columns: 1fr 1fr 1fr; }
+  .page-confirmation .quick-row { grid-template-columns: 1fr 1fr; }
+  .page-confirmation .steps-card { padding: 20px; }
+}

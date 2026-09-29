@@ -1,0 +1,436 @@
+@import './AdminShell.css';
+
+/* Everything below is specific to the Settings page and scoped under
+   .page-settings so it can never collide with another page's CSS again —
+   even if another page reuses one of these class names later. */
+
+/* SECTION CARD — spacing specific to this page; base look comes from
+   AdminShell.css's shared .section-card. */
+.page-settings .section-card {
+  padding: 32px;
+  margin-bottom: 24px;
+}
+
+.page-settings .section-card:last-child {
+  margin-bottom: 0;
+}
+
+.page-settings .section-card h3 {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--deep);
+  margin-bottom: 16px;
+}
+
+.page-settings .form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 16px;
+  margin-top: 4px;
+  border-top: 1px solid var(--gray-100);
+}
+
+/* LOGO UPLOAD */
+.page-settings .logo-upload {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.page-settings .logo-preview {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: var(--forest);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: white;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.page-settings .logo-preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.page-settings .logo-upload-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* ADMIN ACCESS */
+.page-settings .admin-access-hint {
+  margin-bottom: 22px;
+}
+
+.page-settings .admin-access-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+/* .table-scroll handles horizontal scrolling on mid-size screens;
+   .table-wrap only draws the rounded border and clips content to it —
+   splitting the two means the rounded corners actually clip the header
+   background instead of it poking past the curve (which is what was
+   chopping the "N" in NAME before). This table layout is specific to the
+   managers list on this page — Volunteers has its own, simpler table. */
+.page-settings .table-wrap {
+  border: 1.5px solid var(--gray-200);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.page-settings .table-scroll {
+  overflow-x: auto;
+}
+
+.page-settings table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.page-settings thead th {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gray-600);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 18px 24px;
+  background: var(--gray-50);
+  border-bottom: 1.5px solid var(--gray-200);
+  white-space: nowrap;
+}
+
+/* Extra left inset on the first column, and matching corner radius on the
+   header/first-and-last-row cells as a belt-and-suspenders alongside
+   .table-wrap's overflow:hidden — keeps "NAME" (and the row avatars) clear
+   of the rounded corner instead of butting right up against it. */
+.page-settings .table-wrap thead th:first-child {
+  padding-left: 32px;
+  border-top-left-radius: 14px;
+}
+
+.page-settings .table-wrap thead th:last-child {
+  border-top-right-radius: 14px;
+}
+
+.page-settings .table-wrap tbody td:first-child {
+  padding-left: 32px;
+}
+
+.page-settings .table-wrap tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 14px;
+}
+
+.page-settings .table-wrap tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 14px;
+}
+
+.page-settings tbody td {
+  padding: 32px 24px;
+  border-bottom: 1px solid var(--gray-100);
+  font-size: 13.5px;
+  color: var(--gray-800);
+  vertical-align: middle;
+  height: 88px;
+  box-sizing: border-box;
+}
+
+.page-settings tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.page-settings tbody tr {
+  transition: background 0.15s;
+}
+
+.page-settings tbody tr:hover {
+  background: var(--gray-50);
+}
+
+.page-settings .name-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.page-settings .name-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--forest), var(--deep));
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.page-settings .row-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.page-settings .row-actions .btn-ghost {
+  padding: 7px 14px;
+  font-size: 12.5px;
+}
+
+.page-settings .dept-chip {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: var(--sage);
+  color: var(--forest);
+  white-space: nowrap;
+}
+
+.page-settings .status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.page-settings .status-chip::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.page-settings .status-active {
+  background: #e8f5ee;
+  color: var(--forest);
+}
+
+.page-settings .status-deactivated {
+  background: #fffbeb;
+  color: #92400e;
+}
+
+/* MODAL — only the overlay is shared (AdminShell.css); this modal is bigger
+   (has a scrolling body + a divider above its actions) than Departments'
+   simple assign-head modal, so the box itself stays page-scoped. */
+.page-settings .modal-box {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 28px;
+  max-width: 440px;
+  width: 100%;
+  max-height: 88vh;
+  overflow-y: auto;
+}
+
+.page-settings .modal-box h2 {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--deep);
+  margin-bottom: 4px;
+}
+
+.page-settings .m-sub {
+  font-size: 13px;
+  color: var(--gray-400);
+  margin-bottom: 18px;
+}
+
+.page-settings .modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--gray-100);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  .page-settings .content {
+    padding: 16px;
+  }
+  .page-settings .modal-box {
+    padding: 22px;
+  }
+
+  /* Stack table into cards on small screens */
+  .page-settings .table-wrap {
+    border: none;
+    border-radius: 0;
+  }
+  .page-settings .table-wrap table,
+  .page-settings .table-wrap thead,
+  .page-settings .table-wrap tbody,
+  .page-settings .table-wrap tr,
+  .page-settings .table-wrap th,
+  .page-settings .table-wrap td {
+    display: block;
+  }
+  .page-settings .table-wrap thead {
+    display: none;
+  }
+  .page-settings .table-wrap tbody tr {
+    border: 1.5px solid var(--gray-200);
+    border-radius: 14px;
+    margin-bottom: 12px;
+    padding: 12px 14px;
+  }
+  .page-settings .table-wrap tbody tr:hover {
+    background: var(--white);
+  }
+  .page-settings .table-wrap tbody td {
+    border-bottom: none;
+    padding: 7px 0;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .page-settings .table-wrap tbody td[data-label]::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--gray-400);
+    margin-right: 12px;
+  }
+  .page-settings .name-cell {
+    flex-direction: row-reverse;
+  }
+}
+
+/* FORM MESSAGES specific to this page */
+.page-settings .form-success {
+  color: #059669;
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+}
+
+.page-settings .table-empty {
+  text-align: center;
+  padding: 24px;
+  color: var(--gray-400);
+}
+
+/* CERTIFICATE TEMPLATE GALLERY — replaces the old single-upload "logo
+   -upload" block. Cards are deliberately similar in spirit to the
+   template preview card above (rounded thumb + label) but laid out as a
+   responsive grid since there can be any number of templates now. */
+.page-settings .template-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.page-settings .template-card {
+  border: 1.5px solid var(--gray-200);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--white);
+  transition: border-color 0.15s ease;
+}
+
+.page-settings .template-card.is-active {
+  border-color: var(--forest);
+  box-shadow: 0 0 0 1px var(--forest);
+}
+
+.page-settings .template-thumb {
+  aspect-ratio: 1.414 / 1;
+  background-color: var(--gray-100);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: var(--gray-400);
+}
+
+.page-settings .template-card-body {
+  padding: 10px 12px;
+}
+
+.page-settings .template-name {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--deep);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.page-settings .template-active-badge {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--forest);
+  background: rgba(31, 107, 82, 0.12);
+  padding: 2px 7px;
+  border-radius: 999px;
+}
+
+.page-settings .template-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.page-settings .template-card-actions .btn-ghost {
+  padding: 5px 10px;
+  font-size: 11.5px;
+}
+
+.page-settings .template-card--add {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 140px;
+  cursor: pointer;
+  color: var(--gray-400);
+  font-size: 12.5px;
+  font-weight: 700;
+  border-style: dashed;
+}
+
+.page-settings .template-card--add:hover {
+  border-color: var(--forest);
+  color: var(--forest);
+}
+
+.page-settings .template-add-icon {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.page-settings .template-add-form {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: 14px;
+  background: var(--gray-50, #fafafa);
+}

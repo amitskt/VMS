@@ -1,0 +1,80 @@
+@import './VolunteerShell.css';
+
+/* Converted from 14-my-engagement.html. Page-specific styles scoped under
+   .page-my-engagement — shared chrome (sidebar/topbar/section-card/
+   empty-state) comes from VolunteerShell.css. */
+
+.page-my-engagement .content { max-width: 1100px; }
+
+/* LEVEL HERO */
+.page-my-engagement .level-hero { background: linear-gradient(135deg, var(--forest), var(--deep)); border-radius: 24px; padding: 32px; color: var(--white); margin-bottom: 24px; position: relative; overflow: hidden; }
+.page-my-engagement .level-hero::before { content: ''; position: absolute; top: -40px; right: -40px; width: 180px; height: 180px; border-radius: 50%; background: rgba(154, 209, 75, .12); }
+.page-my-engagement .level-hero-inner { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+.page-my-engagement .level-ring-wrap { flex-shrink: 0; }
+.page-my-engagement .level-info { flex: 1; min-width: 220px; }
+.page-my-engagement .level-info h2 { font-size: 22px; font-weight: 800; margin-bottom: 6px; }
+.page-my-engagement .level-info .level-sub { font-size: 14px; opacity: .7; margin-bottom: 16px; }
+.page-my-engagement .level-bar-wrap { max-width: 320px; }
+.page-my-engagement .level-bar-label { display: flex; justify-content: space-between; font-size: 12px; opacity: .6; margin-bottom: 6px; }
+.page-my-engagement .level-bar { height: 10px; background: rgba(255, 255, 255, .15); border-radius: 30px; overflow: hidden; }
+.page-my-engagement .level-fill { height: 100%; background: linear-gradient(90deg, var(--lime), #6bab20); border-radius: 30px; transition: width 1s ease; }
+.page-my-engagement .level-next { font-size: 12px; opacity: .6; margin-top: 6px; }
+
+/* LEVELS PATH */
+.page-my-engagement .levels-path-card { background: var(--white); border-radius: 20px; padding: 20px; border: 1.5px solid var(--gray-200); margin-bottom: 24px; }
+.page-my-engagement .levels-path-card h3 { font-size: 15px; font-weight: 800; color: var(--deep); margin-bottom: 16px; }
+.page-my-engagement .levels-path { display: flex; gap: 0; align-items: center; margin-bottom: 4px; overflow-x: auto; padding: 4px 0; }
+.page-my-engagement .level-node { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 84px; }
+.page-my-engagement .level-node .l-icon { width: 48px; height: 48px; border-radius: 50%; border: 3px solid var(--gray-200); background: var(--white); display: flex; align-items: center; justify-content: center; font-size: 20px; transition: all .2s; }
+.page-my-engagement .level-node .l-icon.done { border-color: var(--forest); background: var(--sage); }
+.page-my-engagement .level-node .l-icon.current { border-color: var(--lime); background: linear-gradient(135deg, #e8f5ee, var(--sage)); box-shadow: 0 0 0 4px rgba(154, 209, 75, .2); }
+.page-my-engagement .level-node .l-name { font-size: 10px; font-weight: 700; color: var(--gray-600); text-align: center; white-space: nowrap; }
+.page-my-engagement .level-node .l-name.done { color: var(--forest); }
+.page-my-engagement .level-node .l-name.current { color: var(--forest); font-weight: 800; }
+.page-my-engagement .level-connector { flex: 1; height: 3px; background: var(--gray-200); min-width: 20px; }
+.page-my-engagement .level-connector.done { background: var(--forest); }
+
+/* METRIC GRID */
+.page-my-engagement .metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 24px; }
+.page-my-engagement .metric-card { background: var(--white); border-radius: 18px; padding: 20px; border: 1.5px solid var(--gray-200); text-align: center; }
+.page-my-engagement .metric-card .m-icon { font-size: 28px; margin-bottom: 10px; }
+.page-my-engagement .metric-card .m-num { font-size: 32px; font-weight: 800; color: var(--deep); line-height: 1; }
+.page-my-engagement .metric-card .m-label { font-size: 12px; color: var(--gray-400); margin-top: 4px; }
+
+/* HEATMAP */
+.page-my-engagement .heatmap-card { background: var(--white); border-radius: 20px; padding: 24px; border: 1.5px solid var(--gray-200); margin-bottom: 24px; }
+.page-my-engagement .heatmap-card h3 { font-size: 15px; font-weight: 800; color: var(--deep); margin-bottom: 16px; }
+.page-my-engagement .heatmap-grid { display: grid; grid-template-columns: repeat(26, 1fr); gap: 3px; }
+.page-my-engagement .hmap-cell { aspect-ratio: 1; border-radius: 3px; cursor: pointer; transition: transform .2s; }
+.page-my-engagement .hmap-cell:hover { transform: scale(1.3); }
+.page-my-engagement .hmap-legend { display: flex; align-items: center; gap: 6px; margin-top: 10px; font-size: 11px; color: var(--gray-400); }
+.page-my-engagement .hmap-legend .l-cell { width: 12px; height: 12px; border-radius: 2px; }
+
+/* SKILLS + ACHIEVEMENTS */
+.page-my-engagement .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+.page-my-engagement .skill-bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.page-my-engagement .skill-bar-row .s-label { font-size: 13px; color: var(--gray-600); width: 150px; flex-shrink: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.page-my-engagement .skill-bar { flex: 1; height: 8px; background: var(--gray-100); border-radius: 20px; overflow: hidden; }
+.page-my-engagement .skill-fill { height: 100%; border-radius: 20px; background: linear-gradient(90deg, var(--forest), var(--lime)); }
+.page-my-engagement .skill-pct { font-size: 12px; font-weight: 700; color: var(--forest); width: 24px; text-align: right; }
+
+.page-my-engagement .achievements-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.page-my-engagement .ach-card { background: var(--white); border-radius: 16px; padding: 16px; border: 1.5px solid var(--gray-200); text-align: center; transition: all .2s; }
+.page-my-engagement .ach-card:hover { border-color: var(--gold); box-shadow: 0 4px 16px rgba(216, 183, 92, .15); }
+.page-my-engagement .ach-card.locked { opacity: .5; }
+.page-my-engagement .ach-icon { font-size: 32px; margin-bottom: 8px; }
+.page-my-engagement .ach-name { font-size: 12px; font-weight: 700; color: var(--deep); }
+.page-my-engagement .ach-desc { font-size: 10px; color: var(--gray-400); margin-top: 3px; }
+.page-my-engagement .ach-earned { font-size: 10px; color: var(--forest); font-weight: 600; margin-top: 4px; }
+.page-my-engagement .ach-card.locked .ach-earned { color: var(--gray-400); }
+
+@media (max-width: 900px) {
+  .page-my-engagement .metric-grid { grid-template-columns: 1fr 1fr; }
+  .page-my-engagement .two-col { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .page-my-engagement .content { padding: 16px; }
+  .page-my-engagement .level-hero-inner { flex-direction: column; align-items: flex-start; }
+  .page-my-engagement .achievements-grid { grid-template-columns: 1fr; }
+}
