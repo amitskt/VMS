@@ -5,7 +5,7 @@ const Manager = require('../models/Manager');
 const { toPublicTask } = require('../views/taskView');
 const { defaultNextStep, adjustAppsCountOnTransition } = require('../utils/applicationLifecycle');
 const { resolveActorName } = require('../utils/actorName');
-const { notifyTaskAssigned, notifyRevisionNeeded, notifyTrackBCompleted } = require('../utils/notifyVolunteer');
+const { notifyTaskAssigned, notifyTaskInProgress, notifyRevisionNeeded, notifyTrackBCompleted } = require('../utils/notifyVolunteer');
 const { pinActiveCertificateTemplate, uploadCertificateToDrive } = require('../utils/certificateData');
 
 const PAGE_SIZE_DEFAULT = 20;
@@ -283,6 +283,10 @@ exports.updateTaskStatus = async (req, res, next) => {
       );
     }
 
+    if (status === 'inprogress' && task.volunteer) {
+      notifyTaskInProgress(task.volunteer, task.opportunity, task);
+    }
+
     if (status === 'completed') {
       const application = await Application.findById(task.application).populate('volunteer', 'firstName lastName email');
       if (application) {
@@ -302,7 +306,7 @@ exports.updateTaskStatus = async (req, res, next) => {
         // Fire-and-forget, includes the certificate PDF as an attachment —
         // see notifyVolunteer.js's header comment.
         if (application.volunteer) {
-          notifyTrackBCompleted(application.volunteer, task.opportunity, application);
+          notifyTrackBCompleted(application.volunteer, task.opportunity, application, task);
           uploadCertificateToDrive(application, task.opportunity, application.volunteer);
         }
       }

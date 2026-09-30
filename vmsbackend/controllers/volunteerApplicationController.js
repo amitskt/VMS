@@ -5,7 +5,7 @@ const { toPublicApplication } = require('../views/applicationView');
 const { defaultNextStep, adjustAppsCountOnTransition } = require('../utils/applicationLifecycle');
 const { isOpportunityFullById } = require('../utils/opportunityCapacity');
 const { uploadBuffer, uploadBufferForVolunteer } = require('../utils/driveUpload');
-const { notifyTrackACompleted } = require('../utils/notifyVolunteer');
+const { notifyTrackACompleted, notifyApplicationReceived, notifyApplicationWithdrawn } = require('../utils/notifyVolunteer');
 const { pinActiveCertificateTemplate, uploadCertificateToDrive } = require('../utils/certificateData');
 
 /**
@@ -102,6 +102,15 @@ exports.createApplication = async (req, res, next) => {
     // terminal <-> non-terminal edge between two existing statuses).
     await Opportunity.updateOne({ _id: opportunity._id }, { $inc: { apps: 1 } });
 
+    // Fire-and-forget — see notifyVolunteer.js's header comment. Track B
+    // only: 'under_review' is this application's very first status, so this
+    // single email covers both "received" and "under review" — there's no
+    // separate event for the two.
+    if (opportunity.track === 'b') {
+      const volunteer = await Volunteer.findById(req.user.id).select('firstName lastName email');
+      if (volunteer) notifyApplicationReceived(volunteer, opportunity);
+    }
+
     res.status(201).json({
       message: opportunity.track === 'a' ? 'Opportunity claimed!' : 'Application submitted!',
       application: toPublicApplication(application, opportunity),
@@ -178,6 +187,14 @@ exports.withdrawApplication = async (req, res, next) => {
     await adjustAppsCountOnTransition(application.opportunity, fromStatus, 'withdrawn');
 
     const opportunity = await Opportunity.findById(application.opportunity);
+
+    // Fire-and-forget — see notifyVolunteer.js's header comment. Track B
+    // only, matching this notification's scope.
+    if (application.track === 'b' && opportunity) {
+      const volunteer = await Volunteer.findById(req.user.id).select('firstName lastName email');
+      if (volunteer) notifyApplicationWithdrawn(volunteer, opportunity);
+    }
+
     res.json({ message: 'Application withdrawn.', application: toPublicApplication(application, opportunity) });
   } catch (err) {
     next(err);

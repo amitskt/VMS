@@ -5,6 +5,7 @@ const { toPublicApplication } = require('../views/applicationView');
 const { toPublicTask } = require('../views/taskView');
 const { uploadBuffer, uploadBufferForVolunteer } = require('../utils/driveUpload');
 const { resolveActorName } = require('../utils/actorName');
+const { notifyTaskSubmitted, notifyTaskRevisedSubmission } = require('../utils/notifyVolunteer');
 
 /**
  * My Tasks (12-my-tasks.html). Deliberately two different data sources for
@@ -62,6 +63,11 @@ exports.submitTask = async (req, res, next) => {
       return res.status(400).json({ message: 'Attach a file or paste a link to submit this task.' });
     }
 
+    // Looked up once here (not just inside the file-upload branch) since a
+    // resubmission-vs-first-submission notification needs it regardless of
+    // whether a file was attached this time.
+    const volunteer = await Volunteer.findById(req.user.id).select('firstName lastName email');
+
     let fileUrl = '';
     let fileName = '';
     if (req.file) {
@@ -69,7 +75,6 @@ exports.submitTask = async (req, res, next) => {
       // photo/resume/certificates live in) — see utils/driveUpload.js's
       // uploadBufferForVolunteer. Falls back to the flat root folder only
       // in the unlikely case the volunteer record can't be found.
-      const volunteer = await Volunteer.findById(req.user.id).select('email');
       const uploaded = volunteer?.email
         ? await uploadBufferForVolunteer(req.file.buffer, req.file.originalname, req.file.mimetype, 'tasks', volunteer.email)
         : await uploadBuffer(req.file.buffer, req.file.originalname, req.file.mimetype, 'tasks');
@@ -77,9 +82,20 @@ exports.submitTask = async (req, res, next) => {
       fileName = req.file.originalname;
     }
 
+    // Captured before task.status is overwritten below — distinguishes a
+    // first-time submission from one made after a manager requested a
+    // revision, so the right confirmation email goes out.
+    const wasRevision = task.status === 'revision';
+
     task.submission = { fileUrl, fileName, link, note, submittedAt: new Date() };
     task.status = 'submitted';
     await task.save();
+
+    // Fire-and-forget — see notifyVolunteer.js's header comment.
+    if (volunteer) {
+      if (wasRevision) notifyTaskRevisedSubmission(volunteer, task.opportunity, task);
+      else notifyTaskSubmitted(volunteer, task.opportunity, task);
+    }
 
     res.json({ message: 'Task submitted for review.', task: toPublicTask(task, task.opportunity) });
   } catch (err) {

@@ -3,7 +3,7 @@ const Opportunity = require('../models/Opportunity');
 const Manager = require('../models/Manager');
 const { toPublicApplication } = require('../views/applicationView');
 const { defaultNextStep, adjustAppsCountOnTransition } = require('../utils/applicationLifecycle');
-const { notifyShortlisted } = require('../utils/notifyVolunteer');
+const { notifyShortlisted, notifyApplicationNotSelected } = require('../utils/notifyVolunteer');
 const { pinActiveCertificateTemplate, uploadCertificateToDrive } = require('../utils/certificateData');
 
 const PAGE_SIZE_DEFAULT = 10;
@@ -238,6 +238,9 @@ exports.updateStatus = async (req, res, next) => {
     // back a status change that already succeeded.
     if (application.track === 'b' && status === 'shortlisted' && application.volunteer) {
       notifyShortlisted(application.volunteer, application.opportunity);
+    }
+    if (application.track === 'b' && status === 'not_selected' && application.volunteer) {
+      notifyApplicationNotSelected(application.volunteer, application.opportunity);
     }
     if (status === 'completed' && application.volunteer) {
       uploadCertificateToDrive(application, application.opportunity, application.volunteer);

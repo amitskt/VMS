@@ -29,59 +29,126 @@ const FRAME = (bodyHtml) => `
   </div>
 </div>`;
 
+function applicationReceivedEmail({ volunteerName, opportunityTitle }) {
+  const subject = 'Your Volunteer Application Has Been Received | Track B STart';
+  const html = FRAME(`
+    <p>Hi ${volunteerName},</p>
+    <p>Thank you for applying for <strong>${opportunityTitle}</strong>. Your volunteer application has been successfully received and is now awaiting review by the concerned team.</p>
+    <p>You can track your application status anytime from your dashboard's <strong>My Applications</strong> page. We'll keep you updated as your application progresses.</p>
+    <p>— The SankalpTaru Team</p>
+  `);
+  const text = `Hi ${volunteerName},\n\nThank you for applying for ${opportunityTitle}. Your volunteer application has been successfully received and is now awaiting review by the concerned team.\n\nYou can track your application status anytime from your dashboard's My Applications page. We'll keep you updated as your application progresses.\n\n— The SankalpTaru Team`;
+  return { subject, html, text };
+}
+
 function shortlistedEmail({ volunteerName, opportunityTitle }) {
-  const subject = 'Your Volunteer Application Has Been Shortlisted | SankalpTaru VMS';
+  const subject = 'Your Volunteer Application Has Been Shortlisted | Track B STart';
   const html = FRAME(`
     <p>Hi ${volunteerName},</p>
     <p>Good news — you've been <strong>shortlisted</strong> for <strong>${opportunityTitle}</strong>.</p>
-    <p>The coordinator may reach out to you shortly, and a task will be assigned to you soon. You can track your application status anytime from your dashboard's My Applications page.</p>
+    <p>The concerned team will reach out to you with the next steps, and a task will be assigned to you once you are selected. You can track your application status anytime from your dashboard's <strong>My Applications</strong> page.</p>
     <p>— The SankalpTaru Team</p>
   `);
-  const text = `Hi ${volunteerName},\n\nYou've been shortlisted for ${opportunityTitle}. The coordinator may reach out to you shortly, and a task will be assigned to you soon.\n\n— The SankalpTaru Team`;
+  const text = `Hi ${volunteerName},\n\nGood news — you've been shortlisted for ${opportunityTitle}.\n\nThe concerned team will reach out to you with the next steps, and a task will be assigned to you once you are selected. You can track your application status anytime from your dashboard's My Applications page.\n\n— The SankalpTaru Team`;
   return { subject, html, text };
 }
 
-function taskAssignedEmail({ volunteerName, opportunityTitle, taskTitle, description, dueDate, reportingPerson }) {
-  const subject = 'New Volunteer Task Assigned | SankalpTaru VMS';
+function taskAssignedEmail({ volunteerName, opportunityTitle, taskTitle, dueDate }) {
+  const subject = 'A New Task Has Been Assigned to You | Track B STart';
   const dueDateStr = dueDate ? new Date(dueDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' }) : '—';
   const html = FRAME(`
     <p>Hi ${volunteerName},</p>
-    <p>A task has been assigned to you for <strong>${opportunityTitle}</strong>:</p>
-    <table style="width:100%;border-collapse:collapse;margin:16px 0;">
-      <tr><td style="padding:6px 0;color:#6b7280;">Task</td><td style="padding:6px 0;"><strong>${taskTitle}</strong></td></tr>
-      <tr><td style="padding:6px 0;color:#6b7280;">Description</td><td style="padding:6px 0;">${description}</td></tr>
-      <tr><td style="padding:6px 0;color:#6b7280;">Due date</td><td style="padding:6px 0;">${dueDateStr}</td></tr>
-      <tr><td style="padding:6px 0;color:#6b7280;">Reporting to</td><td style="padding:6px 0;">${reportingPerson}</td></tr>
-    </table>
-    <p>Log in to My Tasks to view the full details and submit your work once it's ready.</p>
+    <p>A new task has been assigned to you for <strong>${opportunityTitle}</strong>. Your task is <strong>${taskTitle}</strong>, and it is due by <strong>${dueDateStr}</strong>.</p>
+    <p>Please review the task details and complete your submission through STart. You can find the task and all relevant details in your dashboard's <strong>My Tasks</strong> page.</p>
     <p>— The SankalpTaru Team</p>
   `);
-  const text = `Hi ${volunteerName},\n\nA task has been assigned to you for ${opportunityTitle}:\nTask: ${taskTitle}\nDescription: ${description}\nDue date: ${dueDateStr}\nReporting to: ${reportingPerson}\n\nLog in to My Tasks to view the full details and submit your work once it's ready.\n\n— The SankalpTaru Team`;
+  const text = `Hi ${volunteerName},\n\nA new task has been assigned to you for ${opportunityTitle}. Your task is ${taskTitle}, and it is due by ${dueDateStr}.\n\nPlease review the task details and complete your submission through STart. You can find the task and all relevant details in your dashboard's My Tasks page.\n\n— The SankalpTaru Team`;
   return { subject, html, text };
 }
 
-function revisionNeededEmail({ volunteerName, opportunityTitle, taskTitle, feedback }) {
-  const subject = 'Your Volunteer Task Has Been Updated | SankalpTaru VMS';
+function taskInProgressEmail({ volunteerName, opportunityTitle, taskTitle, dueDate }) {
+  const subject = 'Your Assigned Task Is Now In Progress | Track B STart';
+  const dueDateStr = dueDate ? new Date(dueDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' }) : '—';
   const html = FRAME(`
     <p>Hi ${volunteerName},</p>
-    <p>Your submission for <strong>${taskTitle}</strong> (${opportunityTitle}) needs a small revision before it can be approved:</p>
-    <div style="background:#F5F1E8;border-left:3px solid #D8B75C;padding:12px 16px;margin:16px 0;border-radius:6px;">${feedback}</div>
-    <p>Please make the requested changes and resubmit from My Tasks.</p>
+    <p>Your task, <strong>${taskTitle}</strong>, for <strong>${opportunityTitle}</strong> is now marked as <strong>In Progress</strong>.</p>
+    <p>Please continue working on the task and submit your completed work by <strong>${dueDateStr}</strong>. You can view the task details and track its status from your dashboard's <strong>My Tasks</strong> page.</p>
     <p>— The SankalpTaru Team</p>
   `);
-  const text = `Hi ${volunteerName},\n\nYour submission for ${taskTitle} (${opportunityTitle}) needs a small revision before it can be approved:\n\n"${feedback}"\n\nPlease make the requested changes and resubmit from My Tasks.\n\n— The SankalpTaru Team`;
+  const text = `Hi ${volunteerName},\n\nYour task, ${taskTitle}, for ${opportunityTitle} is now marked as In Progress.\n\nPlease continue working on the task and submit your completed work by ${dueDateStr}. You can view the task details and track its status from your dashboard's My Tasks page.\n\n— The SankalpTaru Team`;
   return { subject, html, text };
 }
 
-function trackBCompletedEmail({ volunteerName, opportunityTitle, certificateId }) {
-  const subject = 'Volunteer Task Completed | SankalpTaru VMS';
+function taskSubmittedEmail({ volunteerName, taskTitle }) {
+  const subject = 'Your Task Submission Has Been Received | Track B STart';
   const html = FRAME(`
     <p>Hi ${volunteerName},</p>
-    <p>🎉 Your work on <strong>${opportunityTitle}</strong> has been reviewed and approved. Thank you for your contribution!</p>
-    <p>Your certificate of completion (ID: <strong>${certificateId}</strong>) is attached to this email, and is also available anytime from My Certificates.</p>
+    <p>Your submission for <strong>${taskTitle}</strong> has been successfully received by the concerned team.</p>
+    <p>Your work will now be reviewed. You can track your task status anytime from your dashboard's <strong>My Tasks</strong> page, and we'll notify you once there is an update.</p>
     <p>— The SankalpTaru Team</p>
   `);
-  const text = `Hi ${volunteerName},\n\nYour work on ${opportunityTitle} has been reviewed and approved. Thank you for your contribution!\n\nYour certificate of completion (ID: ${certificateId}) is attached to this email, and is also available anytime from My Certificates.\n\n— The SankalpTaru Team`;
+  const text = `Hi ${volunteerName},\n\nYour submission for ${taskTitle} has been successfully received by the concerned team.\n\nYour work will now be reviewed. You can track your task status anytime from your dashboard's My Tasks page, and we'll notify you once there is an update.\n\n— The SankalpTaru Team`;
+  return { subject, html, text };
+}
+
+function taskRevisedSubmissionEmail({ volunteerName, taskTitle }) {
+  const subject = 'Your Revised Task Submission Has Been Received | Track B STart';
+  const html = FRAME(`
+    <p>Hi ${volunteerName},</p>
+    <p>Your revised submission for <strong>${taskTitle}</strong> has been successfully received.</p>
+    <p>The concerned team will review your updated work and share the next update with you. You can track your task status anytime from your dashboard's <strong>My Tasks</strong> page.</p>
+    <p>— The SankalpTaru Team</p>
+  `);
+  const text = `Hi ${volunteerName},\n\nYour revised submission for ${taskTitle} has been successfully received.\n\nThe concerned team will review your updated work and share the next update with you. You can track your task status anytime from your dashboard's My Tasks page.\n\n— The SankalpTaru Team`;
+  return { subject, html, text };
+}
+
+function revisionNeededEmail({ volunteerName, taskTitle, feedback }) {
+  const subject = 'Revision Required for Your Task | Track B STart';
+  const html = FRAME(`
+    <p>Hi ${volunteerName},</p>
+    <p>Your submission for <strong>${taskTitle}</strong> has been reviewed, and a revision is required before it can be approved.</p>
+    <p><strong>Feedback:</strong> ${feedback}</p>
+    <p>Please review the feedback and resubmit your work through STart. You can find the task and submission details in your dashboard's <strong>My Tasks</strong> page.</p>
+    <p>— The SankalpTaru Team</p>
+  `);
+  const text = `Hi ${volunteerName},\n\nYour submission for ${taskTitle} has been reviewed, and a revision is required before it can be approved.\n\nFeedback: ${feedback}\n\nPlease review the feedback and resubmit your work through STart. You can find the task and submission details in your dashboard's My Tasks page.\n\n— The SankalpTaru Team`;
+  return { subject, html, text };
+}
+
+function applicationNotSelectedEmail({ volunteerName, opportunityTitle }) {
+  const subject = 'Update on Your Volunteer Application | Track B STart';
+  const html = FRAME(`
+    <p>Hi ${volunteerName},</p>
+    <p>Thank you for your interest in <strong>${opportunityTitle}</strong> and for taking the time to apply. After reviewing your application, the concerned team has decided not to proceed with it for this opportunity.</p>
+    <p>We appreciate your interest in volunteering with SankalpTaru and encourage you to explore other opportunities available on STart.</p>
+    <p>— The SankalpTaru Team</p>
+  `);
+  const text = `Hi ${volunteerName},\n\nThank you for your interest in ${opportunityTitle} and for taking the time to apply. After reviewing your application, the concerned team has decided not to proceed with it for this opportunity.\n\nWe appreciate your interest in volunteering with SankalpTaru and encourage you to explore other opportunities available on STart.\n\n— The SankalpTaru Team`;
+  return { subject, html, text };
+}
+
+function applicationWithdrawnEmail({ volunteerName, opportunityTitle }) {
+  const subject = 'Your Volunteer Application Has Been Withdrawn | Track B STart';
+  const html = FRAME(`
+    <p>Hi ${volunteerName},</p>
+    <p>Your application for <strong>${opportunityTitle}</strong> has been successfully withdrawn.</p>
+    <p>If you would like to participate in another volunteering opportunity, you can explore the available opportunities on STart.</p>
+    <p>— The SankalpTaru Team</p>
+  `);
+  const text = `Hi ${volunteerName},\n\nYour application for ${opportunityTitle} has been successfully withdrawn.\n\nIf you would like to participate in another volunteering opportunity, you can explore the available opportunities on STart.\n\n— The SankalpTaru Team`;
+  return { subject, html, text };
+}
+
+function trackBCompletedEmail({ volunteerName, opportunityTitle, taskTitle }) {
+  const subject = 'Your Task Has Been Successfully Completed | Track B STart';
+  const html = FRAME(`
+    <p>Hi ${volunteerName},</p>
+    <p>Congratulations — your Track B task, <strong>${taskTitle}</strong>, for <strong>${opportunityTitle}</strong> has been successfully completed and approved by the concerned team.</p>
+    <p>Your completion has been recorded in STart, and your certificate has been generated. You can access it from your dashboard's <strong>My Certificates</strong> page.</p>
+    <p>— The SankalpTaru Team</p>
+  `);
+  const text = `Hi ${volunteerName},\n\nCongratulations — your Track B task, ${taskTitle}, for ${opportunityTitle} has been successfully completed and approved by the concerned team.\n\nYour completion has been recorded in STart, and your certificate has been generated. You can access it from your dashboard's My Certificates page.\n\n— The SankalpTaru Team`;
   return { subject, html, text };
 }
 
@@ -128,9 +195,15 @@ function emailVerificationOtpEmail({ volunteerName, otp }) {
 }
 
 module.exports = {
+  applicationReceivedEmail,
   shortlistedEmail,
   taskAssignedEmail,
+  taskInProgressEmail,
+  taskSubmittedEmail,
+  taskRevisedSubmissionEmail,
   revisionNeededEmail,
+  applicationNotSelectedEmail,
+  applicationWithdrawnEmail,
   trackBCompletedEmail,
   trackACompletedEmail,
   forgotPasswordOtpEmail,
