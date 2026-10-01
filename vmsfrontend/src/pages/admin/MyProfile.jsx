@@ -19,7 +19,7 @@ import './MyProfile.css';
  * use for, and it didn't return email at all until now.
  */
 
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/admin';
+const BASE_URL = `${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/admin`;
 
 async function apiRequest(path, options = {}) {
   const res = await fetch(`${BASE_URL}${path}`, {

@@ -15,7 +15,7 @@ import ProfileMenu from '../../components/ProfileMenu.jsx';
  * same pattern here: Authorization: Bearer <st_token>.
  */
 
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/admin';
+const BASE_URL = `${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/admin`;
 
 async function apiRequest(path, options = {}) {
   const res = await fetch(`${BASE_URL}${path}`, {
